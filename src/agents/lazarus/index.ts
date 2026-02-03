@@ -85,10 +85,10 @@ export class LazarusAgent extends BaseAgent {
     }
 
     // 2. Analyze transaction patterns
-    const txs = await this.solana.getRecentTransactions(address, 50).catch(() => []);
+    const txs = await this.solana.getRecentTransactions(address, 50).catch(() => [] as { signature: string; slot: number; timestamp: number | null; err: unknown; memo: string | null }[]);
 
     // Check for UTC+9 activity pattern (North Korea timezone)
-    const utc9Activity = this.checkTimezonePattern(txs);
+    const utc9Activity = this.checkTimezonePattern(txs as { timestamp: number | null }[]);
     if (utc9Activity > 60) {
       matchConfidence += 15;
       patterns.push({
@@ -99,7 +99,7 @@ export class LazarusAgent extends BaseAgent {
     }
 
     // Check for peel chain pattern (many small sequential transfers)
-    const peelChain = this.detectPeelChain(txs);
+    const peelChain = this.detectPeelChain(txs as { timestamp: number | null }[]);
     if (peelChain) {
       matchConfidence += 20;
       patterns.push({

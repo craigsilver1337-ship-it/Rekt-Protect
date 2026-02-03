@@ -11,6 +11,8 @@ import { LazarusAgent } from '../agents/lazarus';
 import { HoneypotAgent } from '../agents/honeypot';
 import { ProphetAgent } from '../agents/prophet';
 import { NetworkAgent } from '../agents/network';
+import { HealerAgent } from '../agents/healer';
+import { AIEngine } from '../utils/ai-engine';
 import { logger } from '../utils/logger';
 
 export function createAPIServer(swarm: RektShieldSwarm): express.Application {
@@ -18,11 +20,21 @@ export function createAPIServer(swarm: RektShieldSwarm): express.Application {
   app.use(cors());
   app.use(express.json());
 
+  // AI Engine for direct API access
+  const aiEngine = new AIEngine();
+
   // ============================================
   // HEALTH & STATUS
   // ============================================
   app.get('/api/health', (_, res) => {
-    res.json({ status: 'ok', name: 'REKT Shield', version: '1.0.0', agents: 10 });
+    res.json({
+      status: 'ok',
+      name: 'REKT Shield',
+      version: '2.0.0',
+      agents: 11,
+      ai: aiEngine.isAvailable() ? aiEngine.getProvider() : 'rule-based',
+      selfHealing: true,
+    });
   });
 
   app.get('/api/status', (_, res) => {
@@ -231,6 +243,117 @@ export function createAPIServer(swarm: RektShieldSwarm): express.Application {
   app.get('/api/events/critical', (_, res) => {
     const events = swarm.getEventBus().getCriticalEvents();
     res.json({ events });
+  });
+
+  // ============================================
+  // AI — Intelligence Engine
+  // ============================================
+  app.post('/api/ai/analyze-token', async (req, res) => {
+    try {
+      const result = await aiEngine.analyzeTokenRisk(req.body);
+      res.json(result);
+    } catch (error) {
+      res.status(500).json({ error: `AI analysis failed: ${error}` });
+    }
+  });
+
+  app.post('/api/ai/audit-contract', async (req, res) => {
+    try {
+      const result = await aiEngine.analyzeSmartContract(req.body.code || '');
+      res.json(result);
+    } catch (error) {
+      res.status(500).json({ error: `AI audit failed: ${error}` });
+    }
+  });
+
+  app.post('/api/ai/chat', async (req, res) => {
+    try {
+      const response = await aiEngine.chat(
+        req.body.message || '',
+        swarm.getSwarmStatus() as unknown as Record<string, unknown>,
+      );
+      res.json({ response, provider: aiEngine.getProvider() });
+    } catch (error) {
+      res.status(500).json({ error: `AI chat failed: ${error}` });
+    }
+  });
+
+  app.post('/api/ai/threat-report', async (req, res) => {
+    try {
+      const report = await aiEngine.generateThreatReport(req.body);
+      res.json({ report, provider: aiEngine.getProvider() });
+    } catch (error) {
+      res.status(500).json({ error: `Threat report failed: ${error}` });
+    }
+  });
+
+  app.post('/api/ai/market-risk', async (req, res) => {
+    try {
+      const assessment = await aiEngine.predictMarketRisk(req.body);
+      res.json({ assessment, provider: aiEngine.getProvider() });
+    } catch (error) {
+      res.status(500).json({ error: `Market risk failed: ${error}` });
+    }
+  });
+
+  app.get('/api/ai/status', (_, res) => {
+    res.json({
+      available: aiEngine.isAvailable(),
+      provider: aiEngine.getProvider(),
+      totalCalls: aiEngine.getTotalCalls(),
+    });
+  });
+
+  // ============================================
+  // HEALER — Self-Healing Autonomous Agent
+  // ============================================
+  app.get('/api/healer/status', (_, res) => {
+    try {
+      const healer = swarm.getAgent<HealerAgent>(AgentType.HEALER);
+      res.json(healer.getHealerStatus());
+    } catch (error) {
+      res.status(500).json({ error: `Healer status failed: ${error}` });
+    }
+  });
+
+  app.get('/api/healer/incidents', (req, res) => {
+    try {
+      const healer = swarm.getAgent<HealerAgent>(AgentType.HEALER);
+      const limit = parseInt(req.query.limit as string) || 50;
+      res.json({ incidents: healer.getIncidentLog(limit) });
+    } catch (error) {
+      res.status(500).json({ error: `Incident log failed: ${error}` });
+    }
+  });
+
+  app.get('/api/healer/actions', (req, res) => {
+    try {
+      const healer = swarm.getAgent<HealerAgent>(AgentType.HEALER);
+      const limit = parseInt(req.query.limit as string) || 50;
+      res.json({ actions: healer.getHealActions(limit) });
+    } catch (error) {
+      res.status(500).json({ error: `Heal actions failed: ${error}` });
+    }
+  });
+
+  app.post('/api/healer/decide', async (req, res) => {
+    try {
+      const healer = swarm.getAgent<HealerAgent>(AgentType.HEALER);
+      const decision = await healer.makeAutonomousDecision(req.body.context || 'General assessment');
+      res.json(decision);
+    } catch (error) {
+      res.status(500).json({ error: `Decision failed: ${error}` });
+    }
+  });
+
+  app.post('/api/healer/autonomous-mode', (req, res) => {
+    try {
+      const healer = swarm.getAgent<HealerAgent>(AgentType.HEALER);
+      healer.setAutonomousMode(req.body.enabled !== false);
+      res.json({ success: true, autonomousMode: req.body.enabled !== false });
+    } catch (error) {
+      res.status(500).json({ error: `Mode change failed: ${error}` });
+    }
   });
 
   return app;

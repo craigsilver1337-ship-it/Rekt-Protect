@@ -10,6 +10,7 @@ import {
 import { SolanaClient } from '../../utils/solana';
 import { JupiterClient } from '../../utils/jupiter';
 import { PythClient, PRICE_FEEDS } from '../../utils/pyth';
+import { AIEngine } from '../../utils/ai-engine';
 import { logger } from '../../utils/logger';
 
 // Rug pull pattern weights (trained on 361,000 Raydium pool dataset)
@@ -30,6 +31,7 @@ export class ProphetAgent extends BaseAgent {
   private solana: SolanaClient;
   private jupiter: JupiterClient;
   private pyth: PythClient;
+  private ai: AIEngine;
   private predictions: Map<string, Prediction> = new Map();
   private accuracyLog: { correct: number; total: number } = { correct: 0, total: 0 };
 
@@ -38,6 +40,7 @@ export class ProphetAgent extends BaseAgent {
     this.solana = new SolanaClient();
     this.jupiter = new JupiterClient();
     this.pyth = new PythClient();
+    this.ai = new AIEngine();
   }
 
   protected async onStart(): Promise<void> {
@@ -126,13 +129,38 @@ export class ProphetAgent extends BaseAgent {
     else if (rugScore > 60) timeHorizon = '48h';
     else if (rugScore > 40) timeHorizon = '72h';
 
+    // AI-Enhanced Prediction
+    let aiVerdict = '';
+    if (this.ai.isAvailable()) {
+      try {
+        const aiResponse = await this.ai.analyze(
+          `Predict if this Solana token is likely to rug pull. Give a probability (0-100) and brief reasoning.`,
+          JSON.stringify({ mintAddress, rugScore, signals, timeHorizon }),
+        );
+        aiVerdict = aiResponse.slice(0, 300);
+
+        // Extract AI probability if mentioned
+        const probMatch = aiResponse.match(/(\d{1,3})%/);
+        if (probMatch) {
+          const aiProb = parseInt(probMatch[1]);
+          // Weighted merge: 50% rule-based, 50% AI
+          rugScore = Math.min(Math.round(rugScore * 0.5 + aiProb * 0.5), 100);
+        }
+
+        signals.push(`[AI] ${aiVerdict.slice(0, 100)}`);
+        logger.info(`[PROPHET] AI-enhanced prediction: ${rugScore}%`);
+      } catch {
+        logger.warn('[PROPHET] AI prediction unavailable, using rule-based only');
+      }
+    }
+
     const prediction: Prediction = {
       mintAddress,
       rugProbability: rugScore,
       timeHorizon,
       confidence: Math.min(60 + signals.length * 5, 95),
       signals,
-      verdict: this.getVerdict(rugScore),
+      verdict: aiVerdict || this.getVerdict(rugScore),
       timestamp: Date.now(),
     };
 

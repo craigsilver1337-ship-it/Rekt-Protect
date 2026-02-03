@@ -11,6 +11,7 @@ import { LazarusAgent } from '../agents/lazarus';
 import { HoneypotAgent } from '../agents/honeypot';
 import { ProphetAgent } from '../agents/prophet';
 import { NetworkAgent } from '../agents/network';
+import { HealerAgent, SwarmReference } from '../agents/healer';
 import { logger } from '../utils/logger';
 
 export class RektShieldSwarm {
@@ -38,7 +39,30 @@ export class RektShieldSwarm {
     this.agents.set(AgentType.PROPHET, new ProphetAgent(this.eventBus));
     this.agents.set(AgentType.NETWORK, new NetworkAgent(this.eventBus));
 
+    // 11th Agent: Self-Healing Autonomous Brain
+    const healer = new HealerAgent(this.eventBus);
+    healer.setSwarmReference(this.createSwarmReference());
+    this.agents.set(AgentType.HEALER, healer);
+
     logger.info(`[SWARM] Initialized ${this.agents.size} agents`);
+  }
+
+  private createSwarmReference(): SwarmReference {
+    return {
+      getAgentStatus: (type: AgentType) => {
+        const agent = this.agents.get(type);
+        if (!agent) return { isRunning: false, status: AgentStatus.ERROR };
+        const status = agent.getStatus();
+        return { isRunning: status.isRunning, status: status.status };
+      },
+      restartAgent: async (type: AgentType) => {
+        const agent = this.agents.get(type);
+        if (!agent) throw new Error(`Agent ${type} not found`);
+        await agent.stop();
+        await agent.start();
+        logger.info(`[SWARM] Agent ${type} restarted by HEALER`);
+      },
+    };
   }
 
   private setupSwarmIntelligence(): void {
@@ -91,13 +115,28 @@ export class RektShieldSwarm {
     this.eventBus.onEventType(SwarmEventType.NETWORK_ANOMALY, (event) => {
       logger.warn(`[SWARM] Network anomaly detected — heightening defenses`);
     });
+
+    // Self-healing events
+    this.eventBus.onEventType(SwarmEventType.SELF_HEAL, (event) => {
+      logger.info(`[SWARM] Self-heal action executed by HEALER`);
+    });
+
+    this.eventBus.onEventType(SwarmEventType.INCIDENT_RESOLVED, (event) => {
+      const data = event.data as { incidentId: string; resolution: string };
+      logger.info(`[SWARM] Incident ${data.incidentId} resolved autonomously (${data.resolution})`);
+    });
+
+    this.eventBus.onEventType(SwarmEventType.AUTO_ESCALATE, (event) => {
+      logger.warn(`[SWARM] Auto-escalation by HEALER → ${event.target}`);
+    });
   }
 
   async startAll(): Promise<void> {
     this.startTime = Date.now();
     logger.info('[SWARM] ═══════════════════════════════════════');
-    logger.info('[SWARM]   REKT SHIELD — 10-Agent Swarm');
-    logger.info('[SWARM]   Digital Immune System for Solana');
+    logger.info('[SWARM]   REKT SHIELD — 11-Agent Swarm');
+    logger.info('[SWARM]   Self-Healing Digital Immune System');
+    logger.info('[SWARM]   Autonomous Defense for Solana');
     logger.info('[SWARM] ═══════════════════════════════════════');
 
     const startPromises = Array.from(this.agents.values()).map((agent) =>

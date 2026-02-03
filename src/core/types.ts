@@ -16,6 +16,7 @@ export enum AgentType {
   HONEYPOT = 'HONEYPOT',
   PROPHET = 'PROPHET',
   NETWORK = 'NETWORK',
+  HEALER = 'HEALER',
 }
 
 export enum AgentStatus {
@@ -281,6 +282,10 @@ export enum SwarmEventType {
   PREDICTION_ALERT = 'prediction_alert',
   NETWORK_ANOMALY = 'network_anomaly',
   HEARTBEAT = 'heartbeat',
+  AGENT_FAILURE = 'agent_failure',
+  SELF_HEAL = 'self_heal',
+  AUTO_ESCALATE = 'auto_escalate',
+  INCIDENT_RESOLVED = 'incident_resolved',
 }
 
 // Colosseum integration

@@ -25,15 +25,15 @@ async function main() {
   ║   ███████║██║  ██║██║███████╗███████╗██████╔╝         ║
   ║   ╚══════╝╚═╝  ╚═╝╚═╝╚══════╝╚══════╝╚═════╝          ║
   ║                                                       ║
-  ║   Digital Immune System for Solana                    ║
-  ║   10-Agent Autonomous Defense Swarm                   ║
+  ║   Self-Healing Digital Immune System                  ║
+  ║   11-Agent Autonomous Defense Swarm                   ║
   ║                                                       ║
   ║   Built by Youth — Colosseum Agent Hackathon 2026     ║
   ║                                                       ║
   ╚═══════════════════════════════════════════════════════╝
   `);
 
-  // Initialize the 10-agent swarm
+  // Initialize the 11-agent self-healing swarm
   const swarm = new RektShieldSwarm();
 
   // Start all agents
@@ -60,6 +60,19 @@ async function main() {
     logger.info('[API]   GET  /api/sentiment           - Market sentiment');
     logger.info('[API]   GET  /api/network/health      - Network health');
     logger.info('[API]   GET  /api/events              - Swarm events');
+    logger.info('[API]   --- AI Intelligence ---');
+    logger.info('[API]   POST /api/ai/analyze-token    - AI token analysis');
+    logger.info('[API]   POST /api/ai/audit-contract   - AI contract audit');
+    logger.info('[API]   POST /api/ai/chat             - AI chat');
+    logger.info('[API]   POST /api/ai/threat-report    - AI threat report');
+    logger.info('[API]   POST /api/ai/market-risk      - AI market risk');
+    logger.info('[API]   GET  /api/ai/status           - AI engine status');
+    logger.info('[API]   --- Self-Healing Agent ---');
+    logger.info('[API]   GET  /api/healer/status       - Healer status');
+    logger.info('[API]   GET  /api/healer/incidents     - Incident log');
+    logger.info('[API]   GET  /api/healer/actions       - Heal actions');
+    logger.info('[API]   POST /api/healer/decide        - AI decision');
+    logger.info('[API]   POST /api/healer/autonomous    - Toggle mode');
   });
 
   // Graceful shutdown

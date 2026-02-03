@@ -11,12 +11,14 @@ import {
 import { SolanaClient } from '../../utils/solana';
 import { JupiterClient } from '../../utils/jupiter';
 import { HeliusClient } from '../../utils/helius';
+import { AIEngine, AITokenAnalysis } from '../../utils/ai-engine';
 import { logger } from '../../utils/logger';
 
 export class ScannerAgent extends BaseAgent {
   private solana: SolanaClient;
   private jupiter: JupiterClient;
   private helius: HeliusClient;
+  private ai: AIEngine;
   private scanCache: Map<string, TokenRiskReport> = new Map();
   private knownScammers: Set<string> = new Set();
 
@@ -25,6 +27,7 @@ export class ScannerAgent extends BaseAgent {
     this.solana = new SolanaClient();
     this.jupiter = new JupiterClient();
     this.helius = new HeliusClient();
+    this.ai = new AIEngine();
   }
 
   protected async onStart(): Promise<void> {
@@ -205,19 +208,59 @@ export class ScannerAgent extends BaseAgent {
       timestamp: Date.now(),
     };
 
+    // AI-Enhanced Analysis — deep threat intelligence
+    let aiAnalysis: AITokenAnalysis | null = null;
+    if (this.ai.isAvailable()) {
+      try {
+        aiAnalysis = await this.ai.analyzeTokenRisk({
+          mintAddress,
+          riskScore,
+          threats: threats.map(t => ({ type: t.type, severity: t.severity, description: t.description })),
+          mintAuthority: !!mintInfo?.mintAuthority,
+          freezeAuthority: !!mintInfo?.freezeAuthority,
+          holdersCount: holders.length,
+          price,
+        });
+
+        // Merge AI risk score with rule-based score (weighted average)
+        if (aiAnalysis.aiRiskScore > 0) {
+          report.riskScore = Math.min(
+            Math.round(riskScore * 0.4 + aiAnalysis.aiRiskScore * 0.6),
+            100,
+          );
+          report.threatLevel = this.scoreToThreatLevel(report.riskScore);
+        }
+
+        // Add AI red flags as additional threats
+        for (const flag of aiAnalysis.redFlags) {
+          report.threats.push({
+            type: ThreatType.RUG_PULL,
+            severity: ThreatLevel.MEDIUM,
+            description: `[AI] ${flag}`,
+            evidence: `AI analysis by ${this.ai.getProvider()}`,
+            confidence: 85,
+          });
+        }
+
+        logger.info(`[SCANNER] AI enhanced score: ${report.riskScore}/100 (rule: ${riskScore}, AI: ${aiAnalysis.aiRiskScore})`);
+      } catch (error) {
+        logger.warn(`[SCANNER] AI analysis failed, using rule-based only: ${error}`);
+      }
+    }
+
     // Cache the result
     this.scanCache.set(mintAddress, report);
 
     // Broadcast threat if high risk
-    if (threatLevel === ThreatLevel.CRITICAL || threatLevel === ThreatLevel.HIGH) {
-      this.broadcastThreat(threatLevel, report);
+    if (report.threatLevel === ThreatLevel.CRITICAL || report.threatLevel === ThreatLevel.HIGH) {
+      this.broadcastThreat(report.threatLevel, report);
     }
 
     // Share intel with INTEL agent
-    this.shareIntel({ type: 'scan_result', report });
+    this.shareIntel({ type: 'scan_result', report, aiAnalysis });
 
     logger.info(
-      `[SCANNER] Token ${mintAddress}: Risk=${riskScore}/100 Level=${threatLevel}`,
+      `[SCANNER] Token ${mintAddress}: Risk=${report.riskScore}/100 Level=${report.threatLevel}`,
     );
 
     return report;

@@ -151,5 +151,9 @@ export const emergencyEvacuate = (params: {
   });
 export const getTokenPrice = (tokenMint: string) => fetchAPI(`/swap/price/${tokenMint}`);
 
-// Generic fetcher for SWR
-export const fetcher = (url: string) => fetch(url).then((r) => r.json());
+// Generic fetcher for SWR with error handling
+export const fetcher = async (url: string) => {
+  const res = await fetch(url);
+  if (!res.ok) throw new Error(`API Error: ${res.status}`);
+  return res.json();
+};

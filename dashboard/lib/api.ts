@@ -120,5 +120,36 @@ export const setAutonomousMode = (enabled: boolean) =>
     body: JSON.stringify({ enabled }),
   });
 
+// Swap
+export const getSwapTokens = () => fetchAPI('/swap/tokens');
+export const getSwapQuote = (params: {
+  inputMint: string;
+  outputMint: string;
+  amount: number;
+  slippageBps?: number;
+}) =>
+  fetchAPI('/swap/quote', {
+    method: 'POST',
+    body: JSON.stringify(params),
+  });
+export const executeSwap = (params: {
+  quoteResponse: unknown;
+  userPublicKey: string;
+  outputMint?: string;
+}) =>
+  fetchAPI('/swap/execute', {
+    method: 'POST',
+    body: JSON.stringify(params),
+  });
+export const emergencyEvacuate = (params: {
+  walletAddress: string;
+  tokenAccounts?: Array<{ mint: string; amount: number; name?: string; symbol?: string }>;
+}) =>
+  fetchAPI('/swap/emergency-evacuate', {
+    method: 'POST',
+    body: JSON.stringify(params),
+  });
+export const getTokenPrice = (tokenMint: string) => fetchAPI(`/swap/price/${tokenMint}`);
+
 // Generic fetcher for SWR
 export const fetcher = (url: string) => fetch(url).then((r) => r.json());

@@ -78,6 +78,16 @@ export function statusColor(status: string): string {
   }
 }
 
+export function formatTokenAmount(amount: string | number, decimals: number): string {
+  const raw = typeof amount === 'string' ? parseFloat(amount) : amount;
+  const adjusted = raw / Math.pow(10, decimals);
+  if (adjusted >= 1_000_000) return `${(adjusted / 1_000_000).toFixed(2)}M`;
+  if (adjusted >= 1_000) return `${(adjusted / 1_000).toFixed(2)}K`;
+  if (adjusted >= 1) return adjusted.toFixed(adjusted < 10 ? 4 : 2);
+  if (adjusted >= 0.0001) return adjusted.toFixed(6);
+  return adjusted.toExponential(2);
+}
+
 export function riskScoreColor(score: number): string {
   if (score <= 20) return '#00ff88';
   if (score <= 40) return '#00d4ff';

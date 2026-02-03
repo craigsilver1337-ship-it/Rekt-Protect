@@ -10,6 +10,7 @@ import WalletsTab from '@/components/tabs/WalletsTab';
 import ThreatsTab from '@/components/tabs/ThreatsTab';
 import NetworkTab from '@/components/tabs/NetworkTab';
 import ChatTab from '@/components/tabs/ChatTab';
+import SwapTab from '@/components/tabs/SwapTab';
 import HealerTab from '@/components/tabs/HealerTab';
 
 const TAB_COMPONENTS: Record<TabId, React.ComponentType> = {
@@ -19,6 +20,7 @@ const TAB_COMPONENTS: Record<TabId, React.ComponentType> = {
   threats: ThreatsTab,
   network: NetworkTab,
   chat: ChatTab,
+  swap: SwapTab,
   healer: HealerTab,
 };
 

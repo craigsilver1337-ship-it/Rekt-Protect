@@ -1,11 +1,20 @@
 'use client';
 
-import { Shield, Cpu, Circle } from 'lucide-react';
+import dynamic from 'next/dynamic';
+import { Shield, Cpu, Circle, Wallet } from 'lucide-react';
+import { useWallet } from '@solana/wallet-adapter-react';
 import { useSwarmStatus, useAIStatus } from '@/hooks';
+import { formatAddress } from '@/lib/formatters';
+
+const WalletMultiButton = dynamic(
+  () => import('@solana/wallet-adapter-react-ui').then((mod) => mod.WalletMultiButton),
+  { ssr: false },
+);
 
 export default function Header() {
   const { data: status } = useSwarmStatus();
   const { data: aiStatus } = useAIStatus();
+  const { publicKey, connected } = useWallet();
 
   const activeCount = status?.activeAgents ?? 0;
   const totalCount = status?.totalAgents ?? 11;
@@ -40,6 +49,17 @@ export default function Header() {
             AI: <span className={aiAvailable ? 'text-cyber-blue' : 'text-cyber-red'}>{aiProvider}</span>
           </span>
         </div>
+
+        {connected && publicKey && (
+          <div className="flex items-center gap-2 bg-cyber-card border border-cyber-green/30 rounded px-3 py-1">
+            <Wallet size={12} className="text-cyber-green" />
+            <span className="text-cyber-green font-mono">
+              {formatAddress(publicKey.toBase58())}
+            </span>
+          </div>
+        )}
+
+        <WalletMultiButton />
       </div>
     </header>
   );

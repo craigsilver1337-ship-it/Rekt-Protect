@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import { RektShieldSwarm } from '../core/swarm';
-import { AgentType } from '../core/types';
+import { AgentType, ThreatLevel, SwarmEventType } from '../core/types';
 import { ScannerAgent } from '../agents/scanner';
 import { SentinelAgent } from '../agents/sentinel';
 import { GuardianAgent } from '../agents/guardian';
@@ -13,6 +13,7 @@ import { ProphetAgent } from '../agents/prophet';
 import { NetworkAgent } from '../agents/network';
 import { HealerAgent } from '../agents/healer';
 import { AIEngine } from '../utils/ai-engine';
+import { JupiterClient, POPULAR_TOKENS } from '../utils/jupiter';
 import { logger } from '../utils/logger';
 
 export function createAPIServer(swarm: RektShieldSwarm): express.Application {
@@ -353,6 +354,201 @@ export function createAPIServer(swarm: RektShieldSwarm): express.Application {
       res.json({ success: true, autonomousMode: req.body.enabled !== false });
     } catch (error) {
       res.status(500).json({ error: `Mode change failed: ${error}` });
+    }
+  });
+
+  // ============================================
+  // SWAP — Risk-Aware Token Swapping
+  // ============================================
+  const jupiter = new JupiterClient();
+
+  app.get('/api/swap/tokens', async (_, res) => {
+    try {
+      const tokens = await jupiter.getTokenList();
+      res.json({ tokens, popular: POPULAR_TOKENS });
+    } catch (error) {
+      res.status(500).json({ error: `Failed to fetch tokens: ${error}` });
+    }
+  });
+
+  app.post('/api/swap/quote', async (req, res) => {
+    try {
+      const { inputMint, outputMint, amount, slippageBps } = req.body;
+      if (!inputMint || !outputMint || !amount) {
+        res.status(400).json({ error: 'inputMint, outputMint, and amount are required' });
+        return;
+      }
+
+      // Get quote from Jupiter
+      const quote = await jupiter.getQuote({
+        inputMint,
+        outputMint,
+        amount: Number(amount),
+        slippageBps: slippageBps || 300,
+      });
+
+      // Auto risk-scan the output token
+      let riskReport = null;
+      let safeToSwap = true;
+      let riskWarning: string | null = null;
+
+      try {
+        const scanner = swarm.getAgent<ScannerAgent>(AgentType.SCANNER);
+        riskReport = await scanner.scanToken(outputMint);
+
+        if (riskReport.threatLevel === ThreatLevel.CRITICAL || riskReport.threatLevel === ThreatLevel.HIGH) {
+          safeToSwap = false;
+          riskWarning = `BLOCKED: ${outputMint} has ${riskReport.threatLevel} threat level (risk score: ${riskReport.riskScore}/100). ${riskReport.threats.length} threat(s) detected.`;
+        } else if (riskReport.threatLevel === ThreatLevel.MEDIUM) {
+          riskWarning = `WARNING: ${outputMint} has MEDIUM threat level (risk score: ${riskReport.riskScore}/100). Proceed with caution.`;
+        }
+      } catch (scanError) {
+        logger.warn(`[Swap] Risk scan failed for ${outputMint}: ${scanError}`);
+        riskWarning = 'Risk scan unavailable — proceed with caution';
+      }
+
+      res.json({ quote, riskReport, safeToSwap, riskWarning });
+    } catch (error) {
+      res.status(500).json({ error: `Quote failed: ${error}` });
+    }
+  });
+
+  app.post('/api/swap/execute', async (req, res) => {
+    try {
+      const { quoteResponse, userPublicKey, outputMint } = req.body;
+      if (!quoteResponse || !userPublicKey) {
+        res.status(400).json({ error: 'quoteResponse and userPublicKey are required' });
+        return;
+      }
+
+      // Re-check risk before execution
+      if (outputMint) {
+        try {
+          const scanner = swarm.getAgent<ScannerAgent>(AgentType.SCANNER);
+          const riskReport = await scanner.scanToken(outputMint);
+          if (riskReport.threatLevel === ThreatLevel.CRITICAL || riskReport.threatLevel === ThreatLevel.HIGH) {
+            res.status(403).json({
+              error: 'SWAP BLOCKED',
+              reason: `Token ${outputMint} has ${riskReport.threatLevel} threat level`,
+              riskReport,
+            });
+            return;
+          }
+        } catch (scanError) {
+          logger.warn(`[Swap] Pre-execution risk check failed: ${scanError}`);
+        }
+      }
+
+      const swap = await jupiter.getSwapTransaction({
+        quoteResponse,
+        userPublicKey,
+      });
+
+      // Log swap to event bus
+      swarm.getEventBus().emit(
+        AgentType.GUARDIAN,
+        'ALL',
+        SwarmEventType.DEFENSE_EXECUTED,
+        ThreatLevel.LOW,
+        {
+          action: 'SWAP_EXECUTED',
+          inputMint: quoteResponse.inputMint,
+          outputMint: quoteResponse.outputMint,
+          inAmount: quoteResponse.inAmount,
+          outAmount: quoteResponse.outAmount,
+          userPublicKey,
+        },
+      );
+
+      logger.info(`[Swap] Transaction prepared: ${quoteResponse.inputMint} → ${quoteResponse.outputMint}`);
+      res.json(swap);
+    } catch (error) {
+      res.status(500).json({ error: `Swap execution failed: ${error}` });
+    }
+  });
+
+  app.post('/api/swap/emergency-evacuate', async (req, res) => {
+    try {
+      const { walletAddress, tokenAccounts } = req.body;
+      if (!walletAddress) {
+        res.status(400).json({ error: 'walletAddress is required' });
+        return;
+      }
+
+      const scanner = swarm.getAgent<ScannerAgent>(AgentType.SCANNER);
+      const USDC_MINT = 'EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v';
+      const SOL_MINT = 'So11111111111111111111111111111111111111112';
+
+      // Use provided token accounts or simulate with known tokens
+      const tokens: Array<{ mint: string; amount: number; name?: string; symbol?: string }> =
+        tokenAccounts || [];
+
+      const riskyTokens: Array<{
+        mint: string;
+        name: string;
+        symbol: string;
+        threatLevel: string;
+        riskScore: number;
+        estimatedUSDC: number | null;
+        swapTransaction: string | null;
+      }> = [];
+
+      let totalEstimatedRecovery = 0;
+
+      for (const token of tokens) {
+        // Skip USDC and SOL — they're safe
+        if (token.mint === USDC_MINT || token.mint === SOL_MINT) continue;
+
+        try {
+          const riskReport = await scanner.scanToken(token.mint);
+
+          if (riskReport.threatLevel === ThreatLevel.HIGH || riskReport.threatLevel === ThreatLevel.CRITICAL) {
+            // Get price estimate
+            const price = await jupiter.getTokenPrice(token.mint);
+            const estimatedUSDC = price ? price * token.amount : null;
+            if (estimatedUSDC) totalEstimatedRecovery += estimatedUSDC;
+
+            let swapTx: string | null = null;
+            try {
+              const swapResult = await jupiter.emergencySwapToUSDC(
+                token.mint,
+                token.amount,
+                walletAddress,
+              );
+              swapTx = swapResult?.swapTransaction || null;
+            } catch {
+              // Swap may fail for illiquid tokens
+            }
+
+            riskyTokens.push({
+              mint: token.mint,
+              name: riskReport.tokenName || token.name || 'Unknown',
+              symbol: riskReport.tokenSymbol || token.symbol || '???',
+              threatLevel: riskReport.threatLevel,
+              riskScore: riskReport.riskScore,
+              estimatedUSDC,
+              swapTransaction: swapTx,
+            });
+          }
+        } catch {
+          // Skip tokens that fail scanning
+        }
+      }
+
+      logger.warn(`[Swap] Emergency evacuate: found ${riskyTokens.length} risky tokens for ${walletAddress}`);
+
+      res.json({ riskyTokens, totalEstimatedRecovery, walletAddress });
+    } catch (error) {
+      res.status(500).json({ error: `Emergency evacuate failed: ${error}` });
+    }
+  });
+
+  app.get('/api/swap/price/:tokenMint', async (req, res) => {
+    try {
+      const price = await jupiter.getTokenPrice(req.params.tokenMint);
+      res.json({ mint: req.params.tokenMint, price });
+    } catch (error) {
+      res.status(500).json({ error: `Price fetch failed: ${error}` });
     }
   });
 

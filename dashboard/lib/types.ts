@@ -335,6 +335,47 @@ export interface MarketSentiment {
   timestamp: number;
 }
 
+// Swap
+export interface SwapTokenInfo {
+  address: string;
+  name: string;
+  symbol: string;
+  decimals: number;
+  logoURI: string;
+  tags?: string[];
+}
+
+export interface SwapQuoteResult {
+  quote: {
+    inputMint: string;
+    outputMint: string;
+    inAmount: string;
+    outAmount: string;
+    otherAmountThreshold: string;
+    swapMode: string;
+    slippageBps: number;
+    routePlan: unknown[];
+    priceImpactPct: string;
+  };
+  riskReport: TokenRiskReport | null;
+  safeToSwap: boolean;
+  riskWarning: string | null;
+}
+
+export interface EmergencyEvacResult {
+  riskyTokens: Array<{
+    mint: string;
+    name: string;
+    symbol: string;
+    threatLevel: string;
+    riskScore: number;
+    estimatedUSDC: number | null;
+    swapTransaction: string | null;
+  }>;
+  totalEstimatedRecovery: number;
+  walletAddress: string;
+}
+
 // API Response wrappers
 export interface SwarmStatus {
   status: string;

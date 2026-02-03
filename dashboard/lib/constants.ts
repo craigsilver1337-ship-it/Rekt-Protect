@@ -3,7 +3,7 @@ import {
   Shield, Eye, Swords, Brain, FileText, Atom,
   Skull, Bug, TrendingUp, Wifi, Heart,
   LayoutDashboard, Search, Wallet, AlertTriangle,
-  Activity, MessageSquare, Stethoscope,
+  Activity, MessageSquare, Stethoscope, ArrowLeftRight,
 } from 'lucide-react';
 
 export const AGENT_META: Record<AgentType, {
@@ -92,7 +92,7 @@ export const AGENT_META: Record<AgentType, {
   },
 };
 
-export type TabId = 'dashboard' | 'scanner' | 'wallets' | 'threats' | 'network' | 'chat' | 'healer';
+export type TabId = 'dashboard' | 'scanner' | 'wallets' | 'threats' | 'network' | 'chat' | 'swap' | 'healer';
 
 export const TABS: { id: TabId; label: string; icon: typeof Shield }[] = [
   { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
@@ -101,6 +101,7 @@ export const TABS: { id: TabId; label: string; icon: typeof Shield }[] = [
   { id: 'threats', label: 'Threat Intel', icon: AlertTriangle },
   { id: 'network', label: 'Network', icon: Activity },
   { id: 'chat', label: 'AI Chat', icon: MessageSquare },
+  { id: 'swap', label: 'Swap', icon: ArrowLeftRight },
   { id: 'healer', label: 'Healer', icon: Stethoscope },
 ];
 

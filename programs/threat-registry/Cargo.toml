@@ -1,0 +1,19 @@
+[package]
+name = "threat-registry"
+version = "0.1.0"
+description = "REKT Shield On-Chain Threat Registry — Solana's security infrastructure for AI agents"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib", "lib"]
+name = "threat_registry"
+
+[features]
+no-entrypoint = []
+no-idl = []
+no-log-ix-name = []
+cpi = ["no-entrypoint"]
+default = []
+
+[dependencies]
+anchor-lang = "0.30.1"

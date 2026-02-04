@@ -1,10 +1,21 @@
-import axios, { AxiosRequestConfig } from 'axios';
+import axios from 'axios';
 import { logger } from './logger';
 
 // lite-api.jup.ag is free and doesn't require an API key
 // api.jup.ag requires an API key (set JUPITER_API_KEY)
 const JUPITER_API_KEY = process.env.JUPITER_API_KEY;
-const JUPITER_API = process.env.JUPITER_API_URL || (JUPITER_API_KEY ? 'https://api.jup.ag' : 'https://lite-api.jup.ag');
+
+function resolveJupiterUrl(): string {
+  const envUrl = process.env.JUPITER_API_URL;
+  // If api.jup.ag is set but no API key provided, force lite API
+  if (envUrl && envUrl.includes('api.jup.ag') && !envUrl.includes('lite') && !JUPITER_API_KEY) {
+    logger.warn('[Jupiter] api.jup.ag requires an API key — falling back to lite-api.jup.ag');
+    return 'https://lite-api.jup.ag';
+  }
+  return envUrl || (JUPITER_API_KEY ? 'https://api.jup.ag' : 'https://lite-api.jup.ag');
+}
+
+const JUPITER_API = resolveJupiterUrl();
 
 function jupiterHeaders(): Record<string, string> {
   if (JUPITER_API_KEY) {

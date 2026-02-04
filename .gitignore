@@ -1,8 +1,15 @@
 node_modules/
 dist/
 .env
+.env.*
+!.env.example
 *.log
 .DS_Store
 coverage/
 .idea/
 .vscode/
+.vercel
+nul
+agent-credentials.txt
+*.pem
+*.key

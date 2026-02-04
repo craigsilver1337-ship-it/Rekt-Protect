@@ -17,11 +17,19 @@ You protect Solana users from losing money. Every analysis you provide could sav
 export class AIEngine {
   private anthropic: Anthropic | null = null;
   private openai: OpenAI | null = null;
-  private provider: 'anthropic' | 'openai';
+  private groq: OpenAI | null = null;
+  private provider: 'anthropic' | 'openai' | 'groq';
   private totalCalls = 0;
 
   constructor() {
-    if (process.env.ANTHROPIC_API_KEY) {
+    if (process.env.GROQ_API_KEY) {
+      this.groq = new OpenAI({
+        apiKey: process.env.GROQ_API_KEY,
+        baseURL: 'https://api.groq.com/openai/v1',
+      });
+      this.provider = 'groq';
+      logger.info('[AI] Groq initialized');
+    } else if (process.env.ANTHROPIC_API_KEY) {
       this.anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
       this.provider = 'anthropic';
       logger.info('[AI] Anthropic Claude initialized');
@@ -30,7 +38,7 @@ export class AIEngine {
       this.provider = 'openai';
       logger.info('[AI] OpenAI GPT initialized');
     } else {
-      this.provider = 'anthropic';
+      this.provider = 'groq';
       logger.warn('[AI] No AI API key found — using rule-based fallback');
     }
   }
@@ -43,7 +51,9 @@ export class AIEngine {
       : prompt;
 
     try {
-      if (this.anthropic) {
+      if (this.groq) {
+        return await this.callGroq(fullPrompt);
+      } else if (this.anthropic) {
         return await this.callAnthropic(fullPrompt);
       } else if (this.openai) {
         return await this.callOpenAI(fullPrompt);
@@ -65,6 +75,19 @@ export class AIEngine {
 
     const block = response.content[0];
     return block.type === 'text' ? block.text : '';
+  }
+
+  private async callGroq(prompt: string): Promise<string> {
+    const response = await this.groq!.chat.completions.create({
+      model: 'llama-3.3-70b-versatile',
+      max_tokens: 1024,
+      messages: [
+        { role: 'system', content: SYSTEM_PROMPT },
+        { role: 'user', content: prompt },
+      ],
+    });
+
+    return response.choices[0]?.message?.content || '';
   }
 
   private async callOpenAI(prompt: string): Promise<string> {
@@ -225,11 +248,11 @@ Provide a brief risk assessment with actionable advice.`;
     if (prompt.includes('contract') || prompt.includes('audit')) {
       return 'Rule-based analysis: Verify owner checks, signer verification, PDA validation, and access controls. Configure AI API key for comprehensive smart contract auditing.';
     }
-    return 'AI analysis unavailable. Set ANTHROPIC_API_KEY or OPENAI_API_KEY in .env for AI-powered security intelligence.';
+    return 'AI analysis unavailable. Set GROQ_API_KEY, ANTHROPIC_API_KEY, or OPENAI_API_KEY in .env for AI-powered security intelligence.';
   }
 
   isAvailable(): boolean {
-    return this.anthropic !== null || this.openai !== null;
+    return this.groq !== null || this.anthropic !== null || this.openai !== null;
   }
 
   getProvider(): string {

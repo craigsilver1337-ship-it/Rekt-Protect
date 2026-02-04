@@ -1,20 +1,26 @@
-import axios from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 import { logger } from './logger';
 
 const HELIUS_API_KEY = process.env.HELIUS_API_KEY || '';
 const HELIUS_BASE = `https://api.helius.xyz/v0`;
 const HELIUS_RPC = `https://mainnet.helius-rpc.com/?api-key=${HELIUS_API_KEY}`;
 
+/** Build config with API key as query param (Helius requires this) but avoid logging */
+function heliusConfig(): AxiosRequestConfig {
+  return { params: { 'api-key': HELIUS_API_KEY } };
+}
+
 export class HeliusClient {
   async createWebhook(params: WebhookParams): Promise<WebhookResponse> {
     const { data } = await axios.post(
-      `${HELIUS_BASE}/webhooks?api-key=${HELIUS_API_KEY}`,
+      `${HELIUS_BASE}/webhooks`,
       {
         webhookURL: params.webhookURL,
         transactionTypes: params.transactionTypes || ['Any'],
         accountAddresses: params.accountAddresses,
         webhookType: params.webhookType || 'enhanced',
       },
+      heliusConfig(),
     );
 
     logger.info(`[Helius] Webhook created: ${data.webhookID}`);
@@ -23,7 +29,8 @@ export class HeliusClient {
 
   async getEnhancedTransactions(address: string): Promise<EnhancedTransaction[]> {
     const { data } = await axios.get(
-      `${HELIUS_BASE}/addresses/${address}/transactions?api-key=${HELIUS_API_KEY}`,
+      `${HELIUS_BASE}/addresses/${address}/transactions`,
+      heliusConfig(),
     );
     return data;
   }
@@ -31,8 +38,9 @@ export class HeliusClient {
   async getTokenMetadata(mintAddress: string): Promise<TokenMetadata | null> {
     try {
       const { data } = await axios.post(
-        `${HELIUS_BASE}/token-metadata?api-key=${HELIUS_API_KEY}`,
+        `${HELIUS_BASE}/token-metadata`,
         { mintAccounts: [mintAddress], includeOffChain: true },
+        heliusConfig(),
       );
       return data?.[0] || null;
     } catch {
@@ -56,22 +64,25 @@ export class HeliusClient {
 
   async parseTransactions(signatures: string[]): Promise<ParsedTransaction[]> {
     const { data } = await axios.post(
-      `${HELIUS_BASE}/transactions?api-key=${HELIUS_API_KEY}`,
+      `${HELIUS_BASE}/transactions`,
       { transactions: signatures },
+      heliusConfig(),
     );
     return data;
   }
 
   async getWebhooks(): Promise<WebhookResponse[]> {
     const { data } = await axios.get(
-      `${HELIUS_BASE}/webhooks?api-key=${HELIUS_API_KEY}`,
+      `${HELIUS_BASE}/webhooks`,
+      heliusConfig(),
     );
     return data;
   }
 
   async deleteWebhook(webhookId: string): Promise<void> {
     await axios.delete(
-      `${HELIUS_BASE}/webhooks/${webhookId}?api-key=${HELIUS_API_KEY}`,
+      `${HELIUS_BASE}/webhooks/${webhookId}`,
+      heliusConfig(),
     );
     logger.info(`[Helius] Webhook deleted: ${webhookId}`);
   }

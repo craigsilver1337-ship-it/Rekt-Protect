@@ -36,9 +36,8 @@ function isValidSolanaAddress(address: string): boolean {
 /** Sanitize error messages — never leak internals to client */
 function safeError(message: string): string {
   if (process.env.NODE_ENV === 'production') {
-    return message;
+    return 'An internal error occurred. Please try again later.';
   }
-  // In dev, still return the generic message (log details server-side)
   return message;
 }
 
@@ -54,8 +53,13 @@ function sanitizeUserInput(input: string, maxLength = 2000): string {
 function requireAuth(req: Request, res: Response, next: NextFunction): void {
   const apiSecret = process.env.API_SECRET;
 
-  // If no API_SECRET is configured, allow all requests (dev mode)
+  // Require API_SECRET in production
   if (!apiSecret) {
+    if (process.env.NODE_ENV === 'production') {
+      res.status(500).json({ error: 'Server misconfiguration — API_SECRET not set' });
+      return;
+    }
+    // Allow in dev mode without secret
     next();
     return;
   }
@@ -139,6 +143,15 @@ export function createAPIServer(swarm: RektShieldSwarm): express.Application {
     message: { error: 'Swap rate limit exceeded — max 10 requests/minute' },
   });
 
+  // Rate limiter for authenticated mutation endpoints — 5 per minute per IP
+  const mutationLimiter = rateLimit({
+    windowMs: 60 * 1000,
+    max: 5,
+    standardHeaders: true,
+    legacyHeaders: false,
+    message: { error: 'Too many mutation requests — max 5/minute' },
+  });
+
   // AI Engine for direct API access
   const aiEngine = new AIEngine();
 
@@ -181,7 +194,7 @@ export function createAPIServer(swarm: RektShieldSwarm): express.Application {
   // ============================================
   // SENTINEL — Wallet Monitoring (auth required)
   // ============================================
-  app.post('/api/monitor/wallet', requireAuth, (req, res) => {
+  app.post('/api/monitor/wallet', requireAuth, mutationLimiter, (req, res) => {
     try {
       const { walletAddress } = req.body;
       if (!walletAddress || !isValidSolanaAddress(walletAddress)) {
@@ -308,9 +321,15 @@ export function createAPIServer(swarm: RektShieldSwarm): express.Application {
   // ============================================
   // HONEYPOT — Active Defense (auth required)
   // ============================================
-  app.post('/api/honeypot/deploy', requireAuth, async (req, res) => {
+  app.post('/api/honeypot/deploy', requireAuth, mutationLimiter, async (req, res) => {
     try {
       const honeypot = swarm.getAgent<HoneypotAgent>(AgentType.HONEYPOT);
+
+      // Validate baitToken
+      if (req.body.baitToken && !isValidSolanaAddress(req.body.baitToken)) {
+        res.status(400).json({ error: 'Invalid baitToken address' });
+        return;
+      }
 
       // Cap max deployments
       if (honeypot.getDeployments().length >= 50) {
@@ -531,7 +550,7 @@ export function createAPIServer(swarm: RektShieldSwarm): express.Application {
     }
   });
 
-  app.post('/api/healer/autonomous-mode', requireAuth, (req, res) => {
+  app.post('/api/healer/autonomous-mode', requireAuth, mutationLimiter, (req, res) => {
     try {
       const healer = swarm.getAgent<HealerAgent>(AgentType.HEALER);
       healer.setAutonomousMode(req.body.enabled !== false);

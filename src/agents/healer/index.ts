@@ -111,7 +111,11 @@ export class HealerAgent extends BaseAgent {
     // Auto-escalate critical threats
     this.eventBus.onEventType(SwarmEventType.THREAT_DETECTED, async (event) => {
       if (event.priority === ThreatLevel.CRITICAL) {
-        await this.executeAutonomousResponse(event);
+        try {
+          await this.executeAutonomousResponse(event);
+        } catch (error) {
+          logger.error(`[HEALER] Autonomous response failed: ${error}`);
+        }
       }
     });
 

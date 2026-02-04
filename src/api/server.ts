@@ -91,12 +91,16 @@ export function createAPIServer(swarm: RektShieldSwarm): express.Application {
   // CORS — restrict to known origins
   const allowedOrigins = [
     'https://rekt-shield.vercel.app',
+    'https://dashboard-youths-projects-db1ba2a3.vercel.app',
     'http://localhost:3000',
     'http://localhost:3001',
   ];
 
   if (process.env.CORS_ORIGIN) {
-    allowedOrigins.push(process.env.CORS_ORIGIN);
+    // Support comma-separated origins
+    process.env.CORS_ORIGIN.split(',').forEach(origin => {
+      allowedOrigins.push(origin.trim());
+    });
   }
 
   app.use(cors({

@@ -14,6 +14,23 @@ import { HeliusClient } from '../../utils/helius';
 import { AIEngine, AITokenAnalysis } from '../../utils/ai-engine';
 import { logger } from '../../utils/logger';
 
+// Trusted tokens that should never be flagged (major stablecoins, native tokens, etc.)
+const TRUSTED_TOKENS = new Set([
+  'So11111111111111111111111111111111111111112',   // SOL (Wrapped SOL)
+  'EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v', // USDC
+  'Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB', // USDT
+  'JUPyiwrYJFskUPiHa7hkeR8VUtAeFoSYbKedZNsDvCN',  // JUP
+  '4k3Dyjzvzp8eMZWUXbBCjEvwSkkk59S5iCNLY3QrkX6R', // RAY
+  'DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263', // BONK
+  'EKpQGSJtjMFqKZ9KQanSqYXRcF8fBopzLHYxdM65zcjm', // WIF
+  'HZ1JovNiVvGrGNiiYvEozEVgZ58xaU3RKwX8eACQBCt3', // PYTH
+  'mSoLzYCxHdYgdzU16g5QSh3i5K3z3KZK7ytfqcJm7So',  // mSOL
+  'bSo13r4TkiE4KumL71LsHTPpL2euBYLFx6h9HP3piy1',  // bSOL
+  '7dHbWXmci3dT8UFYWYZweBLXgycu7Y3iL6trKn1Y7ARj', // stSOL
+  'jtojtomepa8beP8AuQc6eXt5FriJwfFMwQx2v2f9mCL',  // JTO
+  'WENWENvqqNya429ubCdR81ZmD69brwQaaBYY6p91oHk',   // WEN
+]);
+
 export class ScannerAgent extends BaseAgent {
   private solana: SolanaClient;
   private jupiter: JupiterClient;
@@ -59,6 +76,26 @@ export class ScannerAgent extends BaseAgent {
 
     logger.info(`[SCANNER] Scanning token: ${mintAddress}`);
     this.actionCount++;
+
+    // Trusted tokens bypass — USDC, USDT, SOL, etc.
+    if (TRUSTED_TOKENS.has(mintAddress)) {
+      const safeReport: TokenRiskReport = {
+        tokenAddress: mintAddress,
+        tokenName: '',
+        tokenSymbol: '',
+        riskScore: 0,
+        threatLevel: ThreatLevel.SAFE,
+        threats: [],
+        liquidity: { totalLiquidity: 0, isLocked: false, lockDuration: null, lockPercentage: 0, top5HoldersPercentage: 0, lpBurnPercentage: 0 },
+        devWallet: { address: 'trusted', holdingPercentage: 0, transactionCount: 0, age: 9999, hasMultipleTokens: false, previousRugs: 0, isKnownScammer: false },
+        permissions: { mintAuthority: false, freezeAuthority: false, upgradeAuthority: false, ownerCanModify: false, isRenounced: true },
+        prediction: { rugProbability: 0, timeHorizon: '48h', confidence: 99, signals: ['Verified trusted token'] },
+        timestamp: Date.now(),
+      };
+      this.scanCache.set(mintAddress, safeReport);
+      logger.info(`[SCANNER] Token ${mintAddress}: TRUSTED — bypassed risk checks`);
+      return safeReport;
+    }
 
     const threats: ThreatDetail[] = [];
     let riskScore = 0;

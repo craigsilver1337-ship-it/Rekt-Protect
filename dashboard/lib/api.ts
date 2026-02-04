@@ -1,4 +1,6 @@
-const API_BASE = '/api';
+const API_BASE = process.env.NEXT_PUBLIC_API_URL
+  ? `${process.env.NEXT_PUBLIC_API_URL}/api`
+  : '/api';
 
 async function fetchAPI<T>(endpoint: string, options?: RequestInit): Promise<T> {
   const res = await fetch(`${API_BASE}${endpoint}`, {
@@ -153,7 +155,10 @@ export const getTokenPrice = (tokenMint: string) => fetchAPI(`/swap/price/${toke
 
 // Generic fetcher for SWR with error handling
 export const fetcher = async (url: string) => {
-  const res = await fetch(url);
+  const fullUrl = process.env.NEXT_PUBLIC_API_URL
+    ? url.replace(/^\/api/, `${process.env.NEXT_PUBLIC_API_URL}/api`)
+    : url;
+  const res = await fetch(fullUrl);
   if (!res.ok) throw new Error(`API Error: ${res.status}`);
   return res.json();
 };

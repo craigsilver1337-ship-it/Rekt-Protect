@@ -92,6 +92,8 @@ export function createAPIServer(swarm: RektShieldSwarm): express.Application {
   const allowedOrigins = [
     'https://rekt-shield.vercel.app',
     'https://dashboard-youths-projects-db1ba2a3.vercel.app',
+    'https://rektshield.fun',
+    'https://www.rektshield.fun',
     'http://localhost:3000',
     'http://localhost:3001',
   ];

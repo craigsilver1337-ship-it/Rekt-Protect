@@ -1,7 +1,9 @@
 <div align="center">
 
 <!-- ANIMATED WAVING HEADER — GRADIENT NEON -->
-<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=0:0a0a0f,10:00ff88,30:00d4ff,60:a855f7,80:ff3366,100:0a0a0f&height=280&section=header&text=REKT%20SHIELD&fontSize=90&fontColor=00ff88&fontAlignY=28&desc=%E2%96%88%E2%96%88%20AUTONOMOUS%20DIGITAL%20IMMUNE%20SYSTEM%20FOR%20SOLANA%20%E2%96%88%E2%96%88&descSize=16&descColor=00d4ff&descAlignY=52&animation=fadeIn" />
+<img width="854" height="280" alt="Без имени-1" src="https://github.com/user-attachments/assets/0fa8d8c3-36e1-4a5e-a7c1-84456aaae9a2" />
+type=waving&color=0:0a0a0f,10:00ff88,30:00d4ff,60:a855f7,80:ff3366,100:0a0a0f&height=280&section=header&text=REKT%20SHIELD&fontSize=90&fontColor=00ff88&fontAlignY=28&desc=%E2%96%88%E2%96%88%20AUTONOMOUS%20DIGITAL%20IMMUNE%20SYSTEM%20FOR%20SOLANA%20%E2%96%88%E2%96%88&descSize=16&descColor=00d4ff&descAlignY=52&animation=fadeIn" />  
+
 
 <!-- ANIMATED TYPING — MULTI-LINE HERO -->
 <a href="#">

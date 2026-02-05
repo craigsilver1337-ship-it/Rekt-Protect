@@ -1,12 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   async rewrites() {
-    // Only use rewrites for local development (when no NEXT_PUBLIC_API_URL is set)
-    if (process.env.NEXT_PUBLIC_API_URL) return [];
+    // Use backend API URL if set, otherwise fallback to localhost
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
     return [
       {
         source: '/api/:path*',
-        destination: 'http://localhost:3000/api/:path*',
+        destination: `${apiUrl}/api/:path*`,
       },
     ];
   },

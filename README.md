@@ -1227,8 +1227,12 @@ git push origin feature/your-feature
 
 <br/><br/>
 
+
+
+
 <!-- FOOTER WAVE -->
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0a0a0f,10:00ff88,30:00d4ff,60:a855f7,80:ff3366,100:0a0a0f&height=180&section=footer&text=Built%20by%20Youth%20%7C%20Colosseum%20Agent%20Hackathon%202026&fontSize=18&fontColor=00ff88&fontAlignY=72&desc=Powered%20by%20Claude%20AI%20%C2%B7%20Solana%20%C2%B7%20Jupiter%20%C2%B7%20Helius%20%C2%B7%20Pyth%20%C2%B7%20Metaplex&descSize=12&descColor=00d4ff&descAlignY=88&animation=fadeIn" />
+<img width="854" height="180" alt="Без имени-1" src="https://github.com/user-attachments/assets/419ef841-7951-4e36-859e-9a88b3d183dc" />
+
 
 <br/>
 
@@ -1242,6 +1246,6 @@ git push origin feature/your-feature
 <!-- SOCIAL LINKS -->
 <a href="https://twitter.com/Web3__Youth"><img src="https://img.shields.io/badge/Twitter-@Web3__Youth-1DA1F2?style=flat-square&logo=twitter&logoColor=white" /></a>
 <a href="https://web3youth.in"><img src="https://img.shields.io/badge/Web-web3youth.in-00FF88?style=flat-square&logo=globe&logoColor=white" /></a>
-<a href="https://github.com/YouthAIAgent"><img src="https://img.shields.io/badge/GitHub-YouthAIAgent-181717?style=flat-square&logo=github&logoColor=white" /></a>
+
 
 </div>

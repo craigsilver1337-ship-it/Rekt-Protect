@@ -1,12 +1,14 @@
 'use client';
 
 import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { TokenInput, RiskGauge, ThreatList, PermissionBadges } from '@/components/scanner';
 import { GlowCard } from '@/components/shared';
-import { TokenRiskReport, ThreatLevel } from '@/lib/types';
+import { TokenRiskReport } from '@/lib/types';
 import { scanToken } from '@/lib/api';
 import { formatAddress, formatPercent, formatNumber, formatUSD } from '@/lib/formatters';
-import { User, Droplets, TrendingDown } from 'lucide-react';
+import { User, Droplets, TrendingDown, Info, ShieldCheck, Search } from 'lucide-react';
+import { clsx } from 'clsx';
 
 export default function ScannerTab() {
   const [report, setReport] = useState<TokenRiskReport | null>(null);
@@ -27,173 +29,258 @@ export default function ScannerTab() {
   };
 
   return (
-    <div className="space-y-4">
-      <div>
-        <h1 className="text-lg font-bold text-cyber-green glow-text-green mb-1">
-          Token Scanner
-        </h1>
-        <p className="text-xs text-cyber-text-dim">
-          Analyze any Solana token for rug pull risk, honeypot detection, and security threats
-        </p>
-      </div>
-
-      <TokenInput onScan={handleScan} loading={loading} />
-
-      {error && (
-        <div className="bg-cyber-red/10 border border-cyber-red/30 rounded p-3 text-sm text-cyber-red">
-          {error}
+    <div className="space-y-6 max-w-[1400px] mx-auto pb-12">
+      <motion.div
+        initial={{ opacity: 0, x: -20 }}
+        animate={{ opacity: 1, x: 0 }}
+        className="flex items-center justify-between"
+      >
+        <div>
+          <div className="flex items-center gap-3 mb-1">
+            <div className="w-8 h-8 rounded-lg bg-cyber-green/20 flex items-center justify-center border border-cyber-green/30">
+              <Search size={18} className="text-cyber-green" />
+            </div>
+            <h1 className="text-2xl font-black text-white tracking-tight uppercase">
+              Token <span className="text-cyber-green glow-text-green">Scanner</span>
+            </h1>
+          </div>
+          <p className="text-xs text-cyber-text-dim font-mono tracking-widest">
+            V2.1 // AUTONOMOUS_RISK_ASSESSMENT_ENGINE
+          </p>
         </div>
-      )}
-
-      {loading && (
-        <div className="flex items-center justify-center py-12">
-          <div className="text-cyber-green animate-pulse text-sm">Scanning token...</div>
+        <div className="hidden md:flex items-center gap-4 text-[10px] text-cyber-text-dim font-mono">
+          <div className="flex flex-col items-end">
+            <span className="text-cyber-green font-bold text-xs uppercase">Engine Status</span>
+            <span>SYSTEMS_OPERATIONAL</span>
+          </div>
+          <div className="w-[1px] h-8 bg-cyber-border" />
+          <div className="flex flex-col items-end">
+            <span className="text-cyber-blue font-bold text-xs uppercase">Security Level</span>
+            <span>MAXIMUM_ENFORCEMENT</span>
+          </div>
         </div>
-      )}
+      </motion.div>
 
-      {report && !loading && (
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-          {/* Left: Risk gauge + token info */}
-          <div className="space-y-4">
-            <GlowCard glow={report.riskScore > 60 ? 'red' : report.riskScore > 30 ? 'blue' : 'green'}>
-              <div className="text-center mb-2">
-                <h2 className="text-sm font-bold text-cyber-text">
-                  {report.tokenName} ({report.tokenSymbol})
-                </h2>
-                <p className="text-[10px] text-cyber-text-dim font-mono">
-                  {formatAddress(report.tokenAddress, 8)}
-                </p>
-              </div>
-              <RiskGauge score={report.riskScore} threatLevel={report.threatLevel} />
-            </GlowCard>
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.1 }}
+      >
+        <TokenInput onScan={handleScan} loading={loading} />
+      </motion.div>
 
-            {/* Rug Prediction */}
-            <GlowCard>
-              <div className="flex items-center gap-2 mb-2">
-                <TrendingDown size={14} className="text-cyber-orange" />
-                <h3 className="text-sm font-bold text-cyber-text-dim uppercase tracking-wider">
-                  Rug Prediction
-                </h3>
-              </div>
-              <div className="space-y-2">
-                <div className="flex justify-between text-xs">
-                  <span className="text-cyber-text-dim">Rug Probability</span>
-                  <span className={report.prediction.rugProbability > 50 ? 'text-cyber-red' : 'text-cyber-green'}>
-                    {formatPercent(report.prediction.rugProbability)}
-                  </span>
-                </div>
-                <div className="w-full bg-cyber-darker rounded-full h-2">
-                  <div
-                    className="h-2 rounded-full transition-all duration-500"
-                    style={{
-                      width: `${report.prediction.rugProbability}%`,
-                      backgroundColor: report.prediction.rugProbability > 50 ? '#ff3366' : '#00ff88',
-                    }}
-                  />
-                </div>
-                <div className="flex justify-between text-[10px] text-cyber-text-dim">
-                  <span>Horizon: {report.prediction.timeHorizon}</span>
-                  <span>Confidence: {report.prediction.confidence}%</span>
-                </div>
-                {report.prediction.signals.length > 0 && (
-                  <div className="mt-2 space-y-1">
-                    {report.prediction.signals.map((signal, i) => (
-                      <p key={i} className="text-[10px] text-cyber-text-dim">
-                        {signal}
-                      </p>
-                    ))}
+      <AnimatePresence mode="wait">
+        {error && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            className="bg-cyber-red/10 border border-cyber-red/30 rounded-xl p-4 flex items-center gap-3 text-sm text-cyber-red"
+          >
+            <Info size={16} />
+            <span className="font-mono font-bold tracking-tight">{error}</span>
+          </motion.div>
+        )}
+
+        {loading && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="flex flex-col items-center justify-center py-20 gap-4"
+          >
+            <div className="relative w-16 h-16">
+              <motion.div
+                className="absolute inset-0 border-2 border-cyber-green/30 border-t-cyber-green rounded-full"
+                animate={{ rotate: 360 }}
+                transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+              />
+              <div className="absolute inset-2 border border-cyber-green/10 rounded-full" />
+            </div>
+            <div className="text-center">
+              <p className="text-cyber-green font-mono font-bold tracking-[0.3em] animate-pulse">ANALYZING_TOKEN_METRICS</p>
+              <p className="text-[10px] text-cyber-text-dim font-mono mt-1 italic">Querying Solana mainnet-beta...</p>
+            </div>
+          </motion.div>
+        )}
+
+        {report && !loading && (
+          <motion.div
+            initial="hidden"
+            animate="show"
+            variants={{
+              hidden: { opacity: 0 },
+              show: {
+                opacity: 1,
+                transition: { staggerChildren: 0.1 }
+              }
+            }}
+            className="grid grid-cols-1 lg:grid-cols-12 gap-6"
+          >
+            {/* Left Column (4/12) */}
+            <div className="lg:col-span-4 space-y-6">
+              <GlowCard
+                glow={report.riskScore > 60 ? 'red' : report.riskScore > 30 ? 'blue' : 'green'}
+                className="flex flex-col items-center py-8"
+              >
+                <div className="text-center mb-6">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black/40 border border-cyber-border mb-3">
+                    <ShieldCheck size={12} className="text-cyber-green" />
+                    <span className="text-[10px] font-bold text-cyber-text tracking-widest uppercase">Verified Record</span>
                   </div>
-                )}
-              </div>
-            </GlowCard>
-          </div>
+                  <h2 className="text-2xl font-black text-white tracking-tight">
+                    {report.tokenName} <span className="text-cyber-text-dim text-lg">({report.tokenSymbol})</span>
+                  </h2>
+                  <p className="text-xs text-cyber-green/70 font-mono mt-1 font-bold">
+                    {report.tokenAddress}
+                  </p>
+                </div>
+                <RiskGauge score={report.riskScore} threatLevel={report.threatLevel} />
+              </GlowCard>
 
-          {/* Center: Threats + Permissions */}
-          <div className="space-y-4">
-            <GlowCard>
-              <ThreatList threats={report.threats} />
-            </GlowCard>
-            <GlowCard>
-              <PermissionBadges permissions={report.permissions} />
-            </GlowCard>
-          </div>
+              <GlowCard>
+                <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center gap-2">
+                    <TrendingDown size={14} className="text-cyber-orange" />
+                    <h3 className="text-xs font-bold text-cyber-text-dim uppercase tracking-[0.2em]">
+                      Rug Prediction
+                    </h3>
+                  </div>
+                  <span className="text-[10px] font-mono text-cyber-text-dim uppercase">Model: PREDICT_V4</span>
+                </div>
 
-          {/* Right: Dev wallet + Liquidity */}
-          <div className="space-y-4">
-            <GlowCard>
-              <div className="flex items-center gap-2 mb-3">
-                <User size={14} className="text-cyber-purple" />
-                <h3 className="text-sm font-bold text-cyber-text-dim uppercase tracking-wider">
-                  Dev Wallet
-                </h3>
-              </div>
-              <div className="space-y-2 text-xs">
-                <div className="flex justify-between">
-                  <span className="text-cyber-text-dim">Address</span>
-                  <span className="text-cyber-text font-mono">{formatAddress(report.devWallet.address)}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-cyber-text-dim">Holding</span>
-                  <span className="text-cyber-text">{formatPercent(report.devWallet.holdingPercentage)}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-cyber-text-dim">Wallet Age</span>
-                  <span className="text-cyber-text">{report.devWallet.age} days</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-cyber-text-dim">TX Count</span>
-                  <span className="text-cyber-text">{formatNumber(report.devWallet.transactionCount)}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-cyber-text-dim">Previous Rugs</span>
-                  <span className={report.devWallet.previousRugs > 0 ? 'text-cyber-red' : 'text-cyber-green'}>
-                    {report.devWallet.previousRugs}
-                  </span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-cyber-text-dim">Known Scammer</span>
-                  <span className={report.devWallet.isKnownScammer ? 'text-cyber-red' : 'text-cyber-green'}>
-                    {report.devWallet.isKnownScammer ? 'YES' : 'NO'}
-                  </span>
-                </div>
-              </div>
-            </GlowCard>
+                <div className="space-y-4">
+                  <div className="space-y-1.5">
+                    <div className="flex justify-between items-end">
+                      <span className="text-[10px] text-cyber-text-dim uppercase font-bold tracking-wider">Probability</span>
+                      <span className={clsx("text-lg font-black font-mono", report.prediction.rugProbability > 50 ? 'text-cyber-red' : 'text-cyber-green')}>
+                        {formatPercent(report.prediction.rugProbability)}
+                      </span>
+                    </div>
+                    <div className="w-full bg-black/40 rounded-full h-1.5 overflow-hidden border border-cyber-border/30">
+                      <motion.div
+                        initial={{ width: 0 }}
+                        animate={{ width: `${report.prediction.rugProbability}%` }}
+                        transition={{ duration: 1, ease: "easeOut" }}
+                        className={clsx(
+                          "h-full rounded-full",
+                          report.prediction.rugProbability > 50 ? 'bg-cyber-red shadow-[0_0_10px_#ff3366]' : 'bg-cyber-green shadow-[0_0_10px_#00ff88]'
+                        )}
+                      />
+                    </div>
+                  </div>
 
-            <GlowCard>
-              <div className="flex items-center gap-2 mb-3">
-                <Droplets size={14} className="text-cyber-blue" />
-                <h3 className="text-sm font-bold text-cyber-text-dim uppercase tracking-wider">
-                  Liquidity
-                </h3>
-              </div>
-              <div className="space-y-2 text-xs">
-                <div className="flex justify-between">
-                  <span className="text-cyber-text-dim">Total Liquidity</span>
-                  <span className="text-cyber-text">{formatUSD(report.liquidity.totalLiquidity)}</span>
+                  <div className="grid grid-cols-2 gap-3">
+                    <div className="bg-black/20 p-2 rounded-lg border border-cyber-border/30">
+                      <p className="text-[9px] text-cyber-text-dim uppercase font-bold">Time Horizon</p>
+                      <p className="text-xs text-white font-mono">{report.prediction.timeHorizon}</p>
+                    </div>
+                    <div className="bg-black/20 p-2 rounded-lg border border-cyber-border/30">
+                      <p className="text-[9px] text-cyber-text-dim uppercase font-bold">Confidence</p>
+                      <p className="text-xs text-white font-mono">{report.prediction.confidence}%</p>
+                    </div>
+                  </div>
+
+                  {report.prediction.signals.length > 0 && (
+                    <div className="space-y-1.5 mt-2">
+                      <p className="text-[9px] text-cyber-text-dim uppercase font-bold tracking-[0.1em]">AI Indicators:</p>
+                      {report.prediction.signals.map((signal, i) => (
+                        <div key={i} className="flex items-center gap-2 text-[10px] text-cyber-text-dim bg-black/20 px-2 py-1 rounded">
+                          <div className="w-1 h-1 rounded-full bg-cyber-orange" />
+                          <span>{signal}</span>
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </div>
-                <div className="flex justify-between">
-                  <span className="text-cyber-text-dim">Locked</span>
-                  <span className={report.liquidity.isLocked ? 'text-cyber-green' : 'text-cyber-red'}>
-                    {report.liquidity.isLocked ? 'YES' : 'NO'}
-                  </span>
+              </GlowCard>
+            </div>
+
+            {/* Center Column (4/12) */}
+            <div className="lg:col-span-4 space-y-6">
+              <GlowCard className="h-fit">
+                <ThreatList threats={report.threats} />
+              </GlowCard>
+              <GlowCard className="h-fit">
+                <PermissionBadges permissions={report.permissions} />
+              </GlowCard>
+            </div>
+
+            {/* Right Column (4/12) */}
+            <div className="lg:col-span-4 space-y-6">
+              <GlowCard>
+                <div className="flex items-center justify-between mb-5">
+                  <div className="flex items-center gap-2">
+                    <User size={14} className="text-cyber-purple" />
+                    <h3 className="text-xs font-bold text-cyber-text-dim uppercase tracking-[0.2em]">
+                      Dev Wallet
+                    </h3>
+                  </div>
+                  <div className="px-2 py-0.5 rounded bg-cyber-purple/10 border border-cyber-purple/20">
+                    <span className="text-[9px] text-cyber-purple font-bold font-mono uppercase">Tracking</span>
+                  </div>
                 </div>
-                <div className="flex justify-between">
-                  <span className="text-cyber-text-dim">Lock %</span>
-                  <span className="text-cyber-text">{formatPercent(report.liquidity.lockPercentage)}</span>
+
+                <div className="space-y-3">
+                  {[
+                    { label: 'Address', value: formatAddress(report.devWallet.address), mono: true },
+                    { label: 'Holding', value: formatPercent(report.devWallet.holdingPercentage), color: report.devWallet.holdingPercentage > 10 ? 'red' : 'green' },
+                    { label: 'Wallet Age', value: `${report.devWallet.age} days` },
+                    { label: 'TX Count', value: formatNumber(report.devWallet.transactionCount) },
+                    { label: 'Previous Rugs', value: report.devWallet.previousRugs, color: report.devWallet.previousRugs > 0 ? 'red' : 'green' },
+                    { label: 'Known Scammer', value: report.devWallet.isKnownScammer ? 'YES' : 'NO', color: report.devWallet.isKnownScammer ? 'red' : 'green' },
+                  ].map((stat, i) => (
+                    <div key={i} className="flex justify-between items-center py-2 border-b border-cyber-border/30 last:border-0 border-dashed">
+                      <span className="text-[10px] text-cyber-text-dim font-bold uppercase tracking-wider">{stat.label}</span>
+                      <span className={clsx(
+                        "text-xs font-bold",
+                        stat.mono && "font-mono",
+                        stat.color === 'red' ? 'text-cyber-red' : stat.color === 'green' ? 'text-cyber-green' : 'text-white'
+                      )}>
+                        {stat.value}
+                      </span>
+                    </div>
+                  ))}
                 </div>
-                <div className="flex justify-between">
-                  <span className="text-cyber-text-dim">Top 5 Holders</span>
-                  <span className="text-cyber-text">{formatPercent(report.liquidity.top5HoldersPercentage)}</span>
+              </GlowCard>
+
+              <GlowCard>
+                <div className="flex items-center justify-between mb-5">
+                  <div className="flex items-center gap-2">
+                    <Droplets size={14} className="text-cyber-blue" />
+                    <h3 className="text-xs font-bold text-cyber-text-dim uppercase tracking-[0.2em]">
+                      Liquidity
+                    </h3>
+                  </div>
+                  <div className="px-2 py-0.5 rounded bg-cyber-blue/10 border border-cyber-blue/20">
+                    <span className="text-[9px] text-cyber-blue font-bold font-mono uppercase">Analysis</span>
+                  </div>
                 </div>
-                <div className="flex justify-between">
-                  <span className="text-cyber-text-dim">LP Burned</span>
-                  <span className="text-cyber-text">{formatPercent(report.liquidity.lpBurnPercentage)}</span>
+
+                <div className="space-y-3">
+                  {[
+                    { label: 'Total Liquidity', value: formatUSD(report.liquidity.totalLiquidity) },
+                    { label: 'Locked Status', value: report.liquidity.isLocked ? 'PROTECTED' : 'UNSECURED', color: report.liquidity.isLocked ? 'green' : 'red' },
+                    { label: 'Lock Percentage', value: formatPercent(report.liquidity.lockPercentage) },
+                    { label: 'Top 5 Holders', value: formatPercent(report.liquidity.top5HoldersPercentage), color: report.liquidity.top5HoldersPercentage > 30 ? 'red' : '' },
+                    { label: 'LP Burned', value: formatPercent(report.liquidity.lpBurnPercentage), color: report.liquidity.lpBurnPercentage > 0 ? 'green' : '' },
+                  ].map((stat, i) => (
+                    <div key={i} className="flex justify-between items-center py-2 border-b border-cyber-border/30 last:border-0 border-dashed">
+                      <span className="text-[10px] text-cyber-text-dim font-bold uppercase tracking-wider">{stat.label}</span>
+                      <span className={clsx(
+                        "text-xs font-bold",
+                        stat.color === 'red' ? 'text-cyber-red' : stat.color === 'green' ? 'text-cyber-green' : 'text-white'
+                      )}>
+                        {stat.value}
+                      </span>
+                    </div>
+                  ))}
                 </div>
-              </div>
-            </GlowCard>
-          </div>
-        </div>
-      )}
+              </GlowCard>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

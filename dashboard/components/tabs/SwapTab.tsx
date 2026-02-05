@@ -151,8 +151,8 @@ export default function SwapTab() {
             <Shield size={20} />
             Risk-Aware Swap
           </h1>
-          <p className="text-xs text-cyber-text-dim">
-            Powered by Jupiter + REKT Shield — every swap is auto-scanned for threats
+          <p className="text-[10px] text-cyber-text-dim/50 uppercase tracking-widest font-mono text-center">
+            Powered by Jupiter + REKT PROTECT — every swap is auto-scanned for threats
           </p>
         </div>
       </div>

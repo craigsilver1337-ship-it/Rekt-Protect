@@ -10,7 +10,7 @@
   }
 
   body {
-    @apply bg-cyber-black text-cyber-text font-mono antialiased;
+    @apply bg-transparent text-cyber-text font-mono antialiased;
   }
 
   ::-webkit-scrollbar {

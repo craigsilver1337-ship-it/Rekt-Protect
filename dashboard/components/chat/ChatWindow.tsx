@@ -35,9 +35,11 @@ export default function ChatWindow({ messages, loading }: ChatWindowProps) {
         {messages.length === 0 && (
           <div className="text-center py-12">
             <Terminal size={32} className="text-cyber-green/20 mx-auto mb-3" />
-            <p className="text-xs text-cyber-green/40 font-mono">
-              REKT SHIELD AI Terminal
-            </p>
+            <div className="flex flex-col">
+              <span className="text-xs font-black text-white tracking-widest uppercase">
+                REKT PROTECT AI Terminal
+              </span>
+            </div>
             <p className="text-[10px] text-cyber-green/30 font-mono mt-1">
               Ask about threats, scan tokens, or get security recommendations
             </p>

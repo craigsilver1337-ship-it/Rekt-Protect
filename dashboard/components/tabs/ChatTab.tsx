@@ -56,8 +56,8 @@ export default function ChatTab() {
           <h1 className="text-lg font-bold text-cyber-green glow-text-green mb-1">
             AI Intelligence Terminal
           </h1>
-          <p className="text-xs text-cyber-text-dim">
-            Chat with the REKT SHIELD AI swarm intelligence
+          <p className="text-xs text-cyber-text-dim max-w-md mx-auto">
+            Chat with the REKT PROTECT AI swarm intelligence
           </p>
         </div>
         <div className="flex items-center gap-1.5">

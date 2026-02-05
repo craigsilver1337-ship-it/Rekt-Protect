@@ -65,8 +65,8 @@ export default function RiskWarningPanel({ quoteResult, scanning }: RiskWarningP
     <GlowCard glow={glow}>
       <div className="flex items-center gap-2 mb-3">
         <ShieldCheck size={14} className="text-cyber-green" />
-        <h3 className="text-sm font-bold text-cyber-text-dim uppercase tracking-wider">
-          REKT Shield Risk Scan
+        <h3 className="text-xs font-bold text-cyber-red uppercase tracking-widest">
+          REKT PROTECT Risk Scan
         </h3>
       </div>
 
@@ -105,11 +105,10 @@ export default function RiskWarningPanel({ quoteResult, scanning }: RiskWarningP
 
       {/* Risk warning message */}
       {riskWarning && (
-        <div className={`text-[10px] p-2 rounded border ${
-          safeToSwap
+        <div className={`text-[10px] p-2 rounded border ${safeToSwap
             ? 'bg-cyber-yellow/10 border-cyber-yellow/30 text-cyber-yellow'
             : 'bg-cyber-red/10 border-cyber-red/30 text-cyber-red'
-        }`}>
+          }`}>
           {riskWarning}
         </div>
       )}

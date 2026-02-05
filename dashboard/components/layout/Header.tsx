@@ -1,7 +1,7 @@
 'use client';
 
 import dynamic from 'next/dynamic';
-import { Shield, Cpu, Circle, Wallet } from 'lucide-react';
+import { Shield, Cpu, Circle, Wallet, LogOut } from 'lucide-react';
 import { useWallet } from '@solana/wallet-adapter-react';
 import { useSwarmStatus, useAIStatus } from '@/hooks';
 import { formatAddress } from '@/lib/formatters';
@@ -16,6 +16,11 @@ export default function Header() {
   const { data: aiStatus } = useAIStatus();
   const { publicKey, connected } = useWallet();
 
+  const handleLogout = () => {
+    localStorage.removeItem('rekt_auth_success');
+    window.location.reload();
+  };
+
   const activeCount = status?.activeAgents ?? 0;
   const totalCount = status?.totalAgents ?? 11;
   const aiProvider = (aiStatus as Record<string, unknown>)?.provider as string ?? 'Claude';
@@ -26,7 +31,7 @@ export default function Header() {
       <div className="flex items-center gap-3">
         <Shield size={18} className="text-cyber-green" />
         <span className="text-sm font-bold tracking-wider">
-          <span className="text-cyber-green glow-text-green">REKT SHIELD</span>
+          <span className="text-cyber-green glow-text-green">REKT PROTECT</span>
           <span className="text-cyber-text-dim ml-2">v2.0</span>
         </span>
       </div>
@@ -59,7 +64,16 @@ export default function Header() {
           </div>
         )}
 
-        <WalletMultiButton />
+        <div className="flex items-center gap-2">
+          <WalletMultiButton />
+          <button
+            onClick={handleLogout}
+            className="p-1.5 rounded bg-cyber-card border border-cyber-border text-cyber-text-dim hover:text-cyber-red hover:border-cyber-red/50 transition-all duration-300"
+            title="Disconnect Protocol"
+          >
+            <LogOut size={16} />
+          </button>
+        </div>
       </div>
     </header>
   );

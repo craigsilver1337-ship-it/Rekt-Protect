@@ -33,6 +33,7 @@ const config: Config = {
         'pulse-glow': 'pulseGlow 2s ease-in-out infinite',
         'scan-line': 'scanLine 3s linear infinite',
         'flicker': 'flicker 0.15s infinite',
+        'shine': 'shine 0.75s forwards',
       },
       keyframes: {
         pulseGlow: {
@@ -46,6 +47,9 @@ const config: Config = {
         flicker: {
           '0%, 100%': { opacity: '1' },
           '50%': { opacity: '0.8' },
+        },
+        shine: {
+          '100%': { left: '125%' },
         },
       },
       boxShadow: {

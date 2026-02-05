@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'REKT SHIELD | Documentation',
-  description: 'Complete documentation for REKT Shield — 11-Agent Autonomous Digital Immune System for Solana. API reference, architecture, integration guides.',
+  title: 'REKT PROTECT | Documentation',
+  description: 'Complete documentation for REKT PROTECT — 11-Agent Autonomous Digital Immune System for Solana. API reference, architecture, integration guides.',
 };
 
 const API_BASE = 'https://web-production-c5ac4.up.railway.app';
@@ -12,7 +12,7 @@ const agents = [
   { name: 'SENTINEL', role: 'Patrol Cell', color: '#00d4ff', desc: '24/7 wallet monitoring via Helius enhanced RPC. Detects suspicious transactions, unusual approvals, drainer contract interactions, and scam pattern matches.', endpoint: 'POST /api/monitor/wallet' },
   { name: 'GUARDIAN', role: 'Killer Cell', color: '#ff3366', desc: 'Autonomous emergency defense. Executes swaps via Jupiter to move risky tokens to USDC, revokes dangerous approvals, transfers assets to safety wallets. No human intervention.', endpoint: 'GET /api/defense/log' },
   { name: 'INTEL', role: 'Immune Memory', color: '#a855f7', desc: 'On-chain threat registry built with Anchor. Stores confirmed threats with multi-agent consensus (2+ agents required). Maintains attacker blacklist with damage estimates.', endpoint: 'GET /api/threats' },
-  { name: 'REPORTER', role: 'Voice', color: '#ffcc00', desc: 'Mints Protection Proof NFTs via Metaplex when REKT Shield successfully defends a wallet. Permanent on-chain evidence of protection.', endpoint: 'Protection Proof NFTs' },
+  { name: 'REPORTER', role: 'Voice', color: '#ffcc00', desc: 'Mints Protection Proof NFTs via Metaplex when REKT PROTECT successfully defends a wallet. Permanent on-chain evidence of protection.', endpoint: 'Protection Proof NFTs' },
   { name: 'QUANTUM', role: 'Evolution', color: '#00d4ff', desc: 'Post-quantum cryptography readiness assessment. Evaluates Ed25519 wallet vulnerability to quantum attacks and tracks global quantum hardware developments.', endpoint: 'GET /api/quantum/assess/:wallet' },
   { name: 'LAZARUS', role: 'Counter-Intel', color: '#ff8800', desc: 'First Solana tool tracking DPRK/Lazarus Group. Cross-references addresses against known attack patterns, OFAC sanctions, FBI advisories. Maps state-sponsored wallet clusters.', endpoint: 'GET /api/lazarus/analyze/:address' },
   { name: 'HONEYPOT', role: 'Antibody', color: '#ff3366', desc: 'Active defense through bait wallet deployment. Captures attacker addresses, methods, timing, and patterns. All intelligence feeds back into INTEL.', endpoint: 'POST /api/honeypot/deploy' },
@@ -184,7 +184,7 @@ export default function DocsPage() {
         <div className="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-2 h-2 rounded-full bg-cyber-green animate-pulse-glow" />
-            <span className="text-cyber-green font-bold tracking-wider text-sm">REKT SHIELD</span>
+            <span className="text-cyber-green font-bold tracking-wider text-sm">REKT PROTECT</span>
             <span className="text-cyber-text-dim text-xs">v2.0 DOCS</span>
           </div>
           <div className="flex items-center gap-4 text-xs">
@@ -205,7 +205,7 @@ export default function DocsPage() {
             <div className="px-2 py-0.5 bg-cyber-blue/10 border border-cyber-blue/30 rounded text-cyber-blue text-[10px] font-bold tracking-widest">v2.0</div>
           </div>
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            <span className="text-cyber-green glow-text-green">REKT SHIELD</span>
+            <span className="text-cyber-green glow-text-green">REKT PROTECT</span>
           </h1>
           <p className="text-lg text-cyber-text-dim max-w-2xl mb-8">
             11-Agent Autonomous Digital Immune System for Solana. Bio-inspired swarm intelligence that detects, predicts, and neutralizes threats in real time.
@@ -595,7 +595,7 @@ console.log(\`Safe: \${quote.safeToSwap}\`);`}</pre>
         <footer className="py-8 border-t border-cyber-border text-center">
           <div className="flex items-center justify-center gap-2 mb-2">
             <div className="w-1.5 h-1.5 rounded-full bg-cyber-green animate-pulse-glow" />
-            <span className="text-sm text-cyber-green font-bold tracking-wider">REKT SHIELD v2.0</span>
+            <span className="text-sm text-cyber-green font-bold tracking-wider">REKT PROTECT v2.0</span>
           </div>
           <p className="text-xs text-cyber-text-dim">
             11 Agents. Zero Human Intervention. Digital Immune System for Solana.

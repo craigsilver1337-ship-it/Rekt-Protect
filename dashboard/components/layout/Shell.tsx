@@ -33,7 +33,7 @@ export default function Shell() {
       <Header />
       <div className="flex flex-1 overflow-hidden">
         <Sidebar activeTab={activeTab} onTabChange={setActiveTab} />
-        <main className="flex-1 overflow-auto p-4 cyber-grid">
+        <main className="flex-1 overflow-auto p-4 bg-transparent">
           <ActiveComponent />
         </main>
       </div>

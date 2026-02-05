@@ -1,5 +1,6 @@
 'use client';
 
+import { motion } from 'framer-motion';
 import { riskScoreColor } from '@/lib/formatters';
 import { ThreatLevel } from '@/lib/types';
 
@@ -12,81 +13,76 @@ export default function RiskGauge({ score, threatLevel }: RiskGaugeProps) {
   const color = riskScoreColor(score);
   const radius = 70;
   const circumference = 2 * Math.PI * radius;
-  const strokeDashoffset = circumference - (score / 100) * circumference;
 
   return (
-    <div className="flex flex-col items-center">
-      <svg width="200" height="200" viewBox="0 0 200 200">
-        {/* Background circle */}
+    <div className="flex flex-col items-center relative group">
+      <svg width="220" height="220" viewBox="0 0 200 200" className="transform -rotate-90">
+        <defs>
+          <linearGradient id="gaugeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor={color} stopOpacity="0.4" />
+            <stop offset="100%" stopColor={color} stopOpacity="1" />
+          </linearGradient>
+          <filter id="gaugeGlow">
+            <feGaussianBlur stdDeviation="4" result="blur" />
+            <feComposite in="SourceGraphic" in2="blur" operator="over" />
+          </filter>
+        </defs>
+
+        {/* Background track */}
         <circle
           cx="100"
           cy="100"
           r={radius}
           fill="none"
-          stroke="#1e1e2e"
-          strokeWidth="12"
+          stroke="rgba(255,255,255,0.05)"
+          strokeWidth="10"
         />
-        {/* Score arc */}
-        <circle
+
+        {/* Animated score arc */}
+        <motion.circle
           cx="100"
           cy="100"
           r={radius}
           fill="none"
           stroke={color}
-          strokeWidth="12"
+          strokeWidth="10"
           strokeLinecap="round"
           strokeDasharray={circumference}
-          strokeDashoffset={strokeDashoffset}
-          transform="rotate(-90 100 100)"
-          style={{ transition: 'stroke-dashoffset 0.8s ease-out, stroke 0.5s ease' }}
-          opacity="0.85"
+          initial={{ strokeDashoffset: circumference }}
+          animate={{ strokeDashoffset: circumference - (score / 100) * circumference }}
+          transition={{ duration: 1.5, ease: "easeOut", delay: 0.5 }}
+          style={{ filter: `drop-shadow(0 0 8px ${color}60)` }}
         />
-        {/* Glow filter */}
-        <defs>
-          <filter id="glow">
-            <feGaussianBlur stdDeviation="3" result="coloredBlur" />
-            <feMerge>
-              <feMergeNode in="coloredBlur" />
-              <feMergeNode in="SourceGraphic" />
-            </feMerge>
-          </filter>
-        </defs>
-        {/* Score text */}
-        <text
-          x="100"
-          y="92"
-          textAnchor="middle"
-          fill={color}
-          fontSize="36"
-          fontFamily="monospace"
-          fontWeight="bold"
-          filter="url(#glow)"
+
+        {/* Floating particles along the arc (optional/advanced, skipping for stability) */}
+      </svg>
+
+      {/* Center Text */}
+      <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+        <motion.span
+          initial={{ opacity: 0, scale: 0.5 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5, delay: 1 }}
+          className="text-4xl font-black font-mono tracking-tighter"
+          style={{ color, filter: `drop-shadow(0 0 10px ${color}40)` }}
         >
           {score}
-        </text>
-        <text
-          x="100"
-          y="112"
-          textAnchor="middle"
-          fill="#808090"
-          fontSize="10"
-          fontFamily="monospace"
-          style={{ textTransform: 'uppercase' }}
-        >
-          RISK SCORE
-        </text>
-        <text
-          x="100"
-          y="130"
-          textAnchor="middle"
-          fill={color}
-          fontSize="12"
-          fontFamily="monospace"
-          fontWeight="bold"
+        </motion.span>
+        <span className="text-[10px] text-cyber-text-dim uppercase tracking-[0.3em] font-bold mt-1">RISK_SCORE</span>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.2 }}
+          className="mt-1 px-3 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-widest border"
+          style={{
+            color,
+            borderColor: `${color}40`,
+            backgroundColor: `${color}10`
+          }}
         >
           {threatLevel}
-        </text>
-      </svg>
+        </motion.div>
+      </div>
     </div>
   );
 }

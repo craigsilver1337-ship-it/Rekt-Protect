@@ -2,7 +2,7 @@
 
 <!-- ANIMATED WAVING HEADER — GRADIENT NEON -->
 <img width="854" height="280" alt="Без имени-1" src="https://github.com/user-attachments/assets/0fa8d8c3-36e1-4a5e-a7c1-84456aaae9a2" />
-type=waving&color=0:0a0a0f,10:00ff88,30:00d4ff,60:a855f7,80:ff3366,100:0a0a0f&height=280&section=header&text=REKT%20SHIELD&fontSize=90&fontColor=00ff88&fontAlignY=28&desc=%E2%96%88%E2%96%88%20AUTONOMOUS%20DIGITAL%20IMMUNE%20SYSTEM%20FOR%20SOLANA%20%E2%96%88%E2%96%88&descSize=16&descColor=00d4ff&descAlignY=52&animation=fadeIn" />  
+<type=waving&color=0:0a0a0f,10:00ff88,30:00d4ff,60:a855f7,80:ff3366,100:0a0a0f&height=280&section=header&text=REKT%20SHIELD&fontSize=90&fontColor=00ff88&fontAlignY=28&desc=%E2%96%88%E2%96%88%20AUTONOMOUS%20DIGITAL%20IMMUNE%20SYSTEM%20FOR%20SOLANA%20%E2%96%88%E2%96%88&descSize=16&descColor=00d4ff&descAlignY=52&animation=fadeIn" />  
 
 
 <!-- ANIMATED TYPING — MULTI-LINE HERO -->
@@ -44,7 +44,7 @@ type=waving&color=0:0a0a0f,10:00ff88,30:00d4ff,60:a855f7,80:ff3366,100:0a0a0f&he
 
 <br/><br/>
 
-**`Built for Colosseum Agent Hackathon 2026`** &nbsp; | &nbsp; **`Powered by Claude AI`** &nbsp; | &nbsp; **`Solana Mainnet`**
+**`Built for Pump.Fun traders`** &nbsp; | &nbsp; **`Powered by Claude AI`** &nbsp; | &nbsp; **`Solana Mainnet`**
 
 <br/>
 
@@ -110,33 +110,40 @@ type=waving&color=0:0a0a0f,10:00ff88,30:00d4ff,60:a855f7,80:ff3366,100:0a0a0f&he
 ## <img src="https://media.giphy.com/media/WUlplcMpOCEmTGBtBW/giphy.gif" width="30"> `SYSTEM BOOT SEQUENCE`
 
 ```
-  ╔═══════════════════════════════════════════════════════════════════════════╗
-  ║                                                                           ║
-  ║   ██████╗ ███████╗██╗  ██╗████████╗    ███████╗██╗  ██╗██╗███████╗██╗     ██████╗  ║
-  ║   ██╔══██╗██╔════╝██║ ██╔╝╚══██╔══╝    ██╔════╝██║  ██║██║██╔════╝██║     ██╔══██╗ ║
-  ║   ██████╔╝█████╗  █████╔╝    ██║       ███████╗███████║██║█████╗  ██║     ██║  ██║ ║
-  ║   ██╔══██╗██╔══╝  ██╔═██╗    ██║       ╚════██║██╔══██║██║██╔══╝  ██║     ██║  ██║ ║
-  ║   ██║  ██║███████╗██║  ██╗   ██║       ███████║██║  ██║██║███████╗███████╗██████╔╝ ║
-  ║   ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝   ╚═╝       ╚══════╝╚═╝  ╚═╝╚═╝╚══════╝╚══════╝╚═════╝  ║
-  ║                                                                           ║
-  ║   [■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■] 100%  BOOT COMPLETE        ║
-  ║                                                                           ║
-  ║   > Initializing swarm consciousness...                         [OK]      ║
-  ║   > Loading 11 autonomous agents...                             [OK]      ║
-  ║   > Connecting to Solana mainnet-beta...                        [OK]      ║
-  ║   > Jupiter DEX integration online...                           [OK]      ║
-  ║   > Wallet adapter (Phantom/Solflare/Torus)...                  [OK]      ║
-  ║   > Arming circuit breakers...                                  [OK]      ║
-  ║   > Enabling autonomous mode...                                 [OK]      ║
-  ║   > AI Engine (Claude) connected...                             [OK]      ║
-  ║   > Self-healing pipeline: ONLINE                               [OK]      ║
-  ║   > Risk-aware swap engine: ARMED                               [OK]      ║
-  ║   > Emergency evacuate system: STANDBY                          [OK]      ║
-  ║   > Digital immune system: FULLY OPERATIONAL                    [OK]      ║
-  ║                                                                           ║
-  ║   STATUS: ██ ALL 11 AGENTS ACTIVE ██   MODE: FULLY AUTONOMOUS            ║
-  ║                                                                           ║
-  ╚═══════════════════════════════════════════════════════════════════════════╝
+╔═══════════════════════════════════════════════════════════════════════════╗
+  ║                                                                           ║
+  ║   ██████╗ ███████╗██╗  ██╗████████╗   ██████╗ ██████╗  ██████╗ ████████╗ ║
+  ║   ██╔══██╗██╔════╝██║ ██╔╝╚══██╔══╝   ██╔══██╗██╔══██╗██╔═══██╗╚══██╔══╝ ║
+  ║   ██████╔╝█████╗  █████╔╝    ██║      ██████╔╝██████╔╝██║   ██║   ██║    ║
+  ║   ██╔══██╗██╔══╝  ██╔═██╗    ██║      ██╔═══╝ ██╔══██╗██║   ██║   ██║    ║
+  ║   ██║  ██║███████╗██║  ██╗   ██║      ██║      ██║  ██║╚██████╔╝   ██║    ║
+  ║   ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝   ╚═╝      ╚═╝      ╚═╝  ╚═╝ ╚═════╝   ╚═╝    ║
+  ║                                                                           ║
+  ║   ███████╗ ██████╗████████╗                                              ║
+  ║   ██╔════╝██╔════╝╚══██╔══╝                                              ║
+  ║   █████╗  ██║        ██║                                                 ║
+  ║   ██╔══╝  ██║        ██║                                                 ║
+  ║   ███████╗╚██████╗   ██║                                                 ║
+  ║   ╚══════╝ ╚═════╝   ╚═╝                                                  ║
+  ║                                                                           ║
+  ║   [■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■] 100%  BOOT COMPLETE        ║
+  ║                                                                           ║
+  ║   > Initializing swarm consciousness...                         [OK]      ║
+  ║   > Loading 11 autonomous agents...                             [OK]      ║
+  ║   > Connecting to Solana mainnet-beta...                        [OK]      ║
+  ║   > Jupiter DEX integration online...                           [OK]      ║
+  ║   > Wallet adapter (Phantom/Solflare/Torus)...                  [OK]      ║
+  ║   > Arming circuit breakers...                                  [OK]      ║
+  ║   > Enabling autonomous mode...                                 [OK]      ║
+  ║   > AI Engine (Gemini) connected...                             [OK]      ║
+  ║   > Self-healing pipeline: ONLINE                               [OK]      ║
+  ║   > Risk-aware swap engine: ARMED                               [OK]      ║
+  ║   > Emergency evacuate system: STANDBY                          [OK]      ║
+  ║   > Digital immune system: FULLY OPERATIONAL                    [OK]      ║
+  ║                                                                           ║
+  ║   STATUS: ██ ALL 11 AGENTS ACTIVE ██   MODE: FULLY AUTONOMOUS            ║
+  ║                                                                           ║
+  ╚═══════════════════════════════════════════════════════════════════════════╝
 ```
 
 <div align="center">
@@ -151,7 +158,7 @@ type=waving&color=0:0a0a0f,10:00ff88,30:00d4ff,60:a855f7,80:ff3366,100:0a0a0f&he
 
 <br/>
 
-> ### _**REKT Shield is a self-healing digital immune system for Solana.** 11 autonomous AI agents — modeled after the human immune system — work in a coordinated swarm to predict, detect, defend, and self-heal against threats. From rug pulls to state-sponsored hackers (Lazarus Group/DPRK), every attack vector is covered with zero human intervention._
+> ### _**REKT PROTECT is a self-healing digital immune system for Solana.** 11 autonomous AI agents — modeled after the human immune system — work in a coordinated swarm to predict, detect, defend, and self-heal against threats. From rug pulls to state-sponsored hackers (Lazarus Group/DPRK), every attack vector is covered with zero human intervention._
 
 <br/>
 
@@ -583,7 +590,7 @@ Self-healing brain. Circuit breakers (3 fail → 60s cooldown), auto-restart fai
 
 ```
 ╔══════════════════════════════════════╗
-║      REKT SHIELD SWAP ENGINE        ║
+║      REKT PROTECT SWAP ENGINE        ║
 ║                                      ║
 ║  ┌──────────┐    ┌──────────┐       ║
 ║  │ FROM     │    │ TO       │       ║
@@ -641,12 +648,12 @@ Self-healing brain. Circuit breakers (3 fail → 60s cooldown), auto-restart fai
 
 ## <img src="https://media.giphy.com/media/kH1DBkPNyZPOk0BxrM/giphy.gif" width="30"> `> IMMUNE SYSTEM ANALOGY_`
 
-> _"Your body has 11 defense systems working 24/7 without you thinking about it. REKT Shield works the same way."_
+> _"Your body has 11 defense systems working 24/7 without you thinking about it. REKT PROTECT works the same way."_
 
 ```
     ┌──────────────────────────────────────────────────────────────────────────┐
     │                                                                          │
-    │                  🧬  HUMAN BODY  ←→  REKT SHIELD  🛡️                    │
+    │                  🧬  HUMAN BODY  ←→  REKT PROTECT  🛡️                    │
     │                                                                          │
     │    ┌──────────────┐     ┌──────────────┐     ┌──────────────┐           │
     │    │   T-CELL      │     │  PATROL CELL │     │  KILLER CELL │           │
@@ -975,7 +982,7 @@ POST /api/swap/evacuate           # Emergency evacuate risky tokens
 # ╚══════════════════════════════════════════════════╝
 
 # 1. Clone the weapon
-git clone https://github.com/YouthAIAgent/rekt-shield.git
+git clone 
 cd rekt-shield
 
 # 2. Install backend dependencies
@@ -1026,11 +1033,11 @@ curl http://localhost:3000/api/lazarus/analyze/SomeAddress...
 
 <!-- ═══════════════════════════════════════════════════════════════ -->
 
-## <img src="https://media.giphy.com/media/fwbZnTftCXVocKzfxR/giphy.gif" width="30"> `> WHY REKT SHIELD WINS_`
+## <img src="https://media.giphy.com/media/fwbZnTftCXVocKzfxR/giphy.gif" width="30"> `> WHY REKT PROTECT WINS_`
 
 <div align="center">
 
-| | Feature | REKT Shield | Others |
+| | Feature | REKT PROTECT | Others |
 |:---:|:---|:---:|:---:|
 | 🧬 | **Autonomous Agent Swarm (11 agents)** | ✅ | ❌ |
 | ❤️‍🩹 | **Self-Healing (circuit breaker + 6-phase IR)** | ✅ | ❌ |
@@ -1093,7 +1100,7 @@ curl http://localhost:3000/api/lazarus/analyze/SomeAddress...
 </div>
 
 ```
-rekt-shield/
+rekt-protect/
 │
 ├── 🧠 src/                                    # Backend — The Brain
 │   ├── index.ts                               # Swarm boot + API server launch

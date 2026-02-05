@@ -10,7 +10,8 @@
     "scanner": "ts-node src/agents/scanner/index.ts",
     "sentinel": "ts-node src/agents/sentinel/index.ts",
     "api": "ts-node src/api/server.ts",
-    "test": "jest"
+    "test": "jest",
+    "postbuild": "cp package.json dist/ && cp -r node_modules dist/"
   },
   "keywords": [
     "solana",

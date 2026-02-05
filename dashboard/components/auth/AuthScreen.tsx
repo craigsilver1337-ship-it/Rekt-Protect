@@ -103,7 +103,7 @@ export default function AuthScreen({ onAuthSuccess }: { onAuthSuccess: () => voi
                         Rekt <span className="text-cyber-green glow-text-green">Protect</span>
                     </h1>
                     <p className="text-xs text-cyber-text-dim font-mono tracking-widest">
-                        AUTHENTICATION_REQUIRED // SYSTEM_V2.1
+                        AUTHENTICATION_REQUIRED // SYSTEM_V0.1
                     </p>
                 </div>
 
@@ -155,7 +155,7 @@ export default function AuthScreen({ onAuthSuccess }: { onAuthSuccess: () => voi
                                     label="Email Address"
                                     icon={Mail}
                                     type="email"
-                                    placeholder="nexus@rektshield.com"
+                                    placeholder="email@rektprotect.com"
                                     required
                                 />
                                 <CyberInput
@@ -194,11 +194,29 @@ export default function AuthScreen({ onAuthSuccess }: { onAuthSuccess: () => voi
                             </div>
 
                             <div className="grid grid-cols-2 gap-4">
-                                <button className="flex items-center justify-center gap-2 py-3 bg-black/40 border border-cyber-border rounded-xl text-[10px] font-bold uppercase tracking-widest text-cyber-text-dim hover:border-cyber-blue hover:text-cyber-blue transition-all duration-300">
+                                <button
+                                    onClick={() => {
+                                        setLoading(true);
+                                        setTimeout(() => {
+                                            setLoading(false);
+                                            onAuthSuccess();
+                                        }, 1500);
+                                    }}
+                                    className="flex items-center justify-center gap-2 py-3 bg-black/40 border border-cyber-border rounded-xl text-[10px] font-bold uppercase tracking-widest text-cyber-text-dim hover:border-cyber-blue hover:text-cyber-blue transition-all duration-300"
+                                >
                                     <Github size={14} />
                                     Github
                                 </button>
-                                <button className="flex items-center justify-center gap-2 py-3 bg-black/40 border border-cyber-border rounded-xl text-[10px] font-bold uppercase tracking-widest text-cyber-text-dim hover:border-cyber-blue hover:text-cyber-blue transition-all duration-300">
+                                <button
+                                    onClick={() => {
+                                        setLoading(true);
+                                        setTimeout(() => {
+                                            setLoading(false);
+                                            onAuthSuccess();
+                                        }, 1500);
+                                    }}
+                                    className="flex items-center justify-center gap-2 py-3 bg-black/40 border border-cyber-border rounded-xl text-[10px] font-bold uppercase tracking-widest text-cyber-text-dim hover:border-cyber-blue hover:text-cyber-blue transition-all duration-300"
+                                >
                                     <Twitter size={14} />
                                     Twitter
                                 </button>

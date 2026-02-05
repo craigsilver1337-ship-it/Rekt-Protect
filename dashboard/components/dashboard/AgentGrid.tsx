@@ -32,7 +32,7 @@ export default function AgentGrid() {
         </h2>
         <div className="flex items-center gap-2">
           <div className="h-[1px] w-24 bg-gradient-to-r from-cyber-border to-transparent" />
-          <span className="text-[10px] text-cyber-green/50 font-mono">ACTIVE_SWARM_V2.1</span>
+          <span className="text-[10px] text-cyber-green/50 font-mono">ACTIVE_SWARM_V0.1</span>
         </div>
       </div>
 

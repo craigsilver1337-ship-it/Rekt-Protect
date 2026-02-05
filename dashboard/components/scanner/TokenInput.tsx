@@ -40,7 +40,7 @@ export default function TokenInput({ onScan, loading }: TokenInputProps) {
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
           onChange={(e) => setAddress(e.target.value)}
-          placeholder="Enter Solana token address (e.g. 7Jdom4Rm...)"
+          placeholder="Enter Solana token address"
           className={clsx(
             "w-full bg-cyber-card/40 backdrop-blur-xl border border-cyber-border rounded-xl px-4 py-3 pl-11 text-sm text-cyber-text font-mono placeholder:text-cyber-text-dim/50 focus:outline-none transition-all duration-300",
             isFocused && "border-cyber-green/50 shadow-[0_0_20px_rgba(0,255,136,0.1)]"

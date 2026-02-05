@@ -5,7 +5,7 @@ import { AnimatedBackground } from '@/components/shared';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'REKT PROTECT v2.0 | Digital Immune System',
+  title: 'REKT PROTECT v0.1 | Digital Immune System',
   description: '11-Agent Autonomous Swarm — Digital Immune System for Solana',
 };
 

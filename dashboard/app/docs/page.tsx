@@ -185,7 +185,7 @@ export default function DocsPage() {
           <div className="flex items-center gap-3">
             <div className="w-2 h-2 rounded-full bg-cyber-green animate-pulse-glow" />
             <span className="text-cyber-green font-bold tracking-wider text-sm">REKT PROTECT</span>
-            <span className="text-cyber-text-dim text-xs">v2.0 DOCS</span>
+            <span className="text-cyber-text-dim text-xs">v0.1 DOCS</span>
           </div>
           <div className="flex items-center gap-4 text-xs">
             <a href="/" className="text-cyber-text-dim hover:text-cyber-green transition-colors">Dashboard</a>
@@ -202,7 +202,7 @@ export default function DocsPage() {
         <div className="relative max-w-6xl mx-auto px-6 py-20">
           <div className="flex items-center gap-2 mb-4">
             <div className="px-2 py-0.5 bg-cyber-green/10 border border-cyber-green/30 rounded text-cyber-green text-[10px] font-bold tracking-widest">DOCUMENTATION</div>
-            <div className="px-2 py-0.5 bg-cyber-blue/10 border border-cyber-blue/30 rounded text-cyber-blue text-[10px] font-bold tracking-widest">v2.0</div>
+            <div className="px-2 py-0.5 bg-cyber-blue/10 border border-cyber-blue/30 rounded text-cyber-blue text-[10px] font-bold tracking-widest">v0.1</div>
           </div>
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
             <span className="text-cyber-green glow-text-green">REKT PROTECT</span>
@@ -595,7 +595,7 @@ console.log(\`Safe: \${quote.safeToSwap}\`);`}</pre>
         <footer className="py-8 border-t border-cyber-border text-center">
           <div className="flex items-center justify-center gap-2 mb-2">
             <div className="w-1.5 h-1.5 rounded-full bg-cyber-green animate-pulse-glow" />
-            <span className="text-sm text-cyber-green font-bold tracking-wider">REKT PROTECT v2.0</span>
+            <span className="text-sm text-cyber-green font-bold tracking-wider">REKT PROTECT v0.1</span>
           </div>
           <p className="text-xs text-cyber-text-dim">
             11 Agents. Zero Human Intervention. Digital Immune System for Solana.

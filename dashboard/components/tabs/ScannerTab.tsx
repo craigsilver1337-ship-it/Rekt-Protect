@@ -45,7 +45,7 @@ export default function ScannerTab() {
             </h1>
           </div>
           <p className="text-xs text-cyber-text-dim font-mono tracking-widest">
-            V2.1 // AUTONOMOUS_RISK_ASSESSMENT_ENGINE
+            V0.1 // AUTONOMOUS_RISK_ASSESSMENT_ENGINE
           </p>
         </div>
         <div className="hidden md:flex items-center gap-4 text-[10px] text-cyber-text-dim font-mono">

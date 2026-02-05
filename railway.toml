@@ -1,18 +1,10 @@
 [build]
-builder = "NIXPACKS"
+builder = "heroku"
 
 [deploy]
-startCommand = "npm run build && npm start"
+startCommand = "npm start"
 restartPolicyType = "ON_FAILURE"
 restartPolicyMaxRetries = 10
 
 [[deploy.healthcheckPath]]
 path = "/api/health"
-
-[environments.production.variables]
-NODE_ENV = "production"
-GROQ_API_KEY = { $ref = "GROQ_API_KEY" }
-SOLANA_RPC_URL = "https://api.mainnet-beta.solana.com"
-CORS_ORIGIN = "https://dashboard-youths-projects-db1ba2a3.vercel.app"
-API_SECRET = "rekt-shield-production-2026"
-PORT = { $ref = "PORT" }

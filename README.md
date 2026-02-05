@@ -36,9 +36,9 @@
 <br/><br/>
 
 <!-- STAR / FORK / ISSUES / LICENSE / VISITORS -->
-<a href="https://github.com/YouthAIAgent/rekt-shield/stargazers"><img src="https://img.shields.io/github/stars/YouthAIAgent/rekt-shield?style=for-the-badge&logo=github&logoColor=00ff88&label=STARS&labelColor=0a0a0f&color=00ff88" /></a>
-<a href="https://github.com/YouthAIAgent/rekt-shield/network/members"><img src="https://img.shields.io/github/forks/YouthAIAgent/rekt-shield?style=for-the-badge&logo=git&logoColor=00d4ff&label=FORKS&labelColor=0a0a0f&color=00d4ff" /></a>
-<a href="https://github.com/YouthAIAgent/rekt-shield/issues"><img src="https://img.shields.io/github/issues/YouthAIAgent/rekt-shield?style=for-the-badge&logo=target&logoColor=ff3366&label=ISSUES&labelColor=0a0a0f&color=ff3366" /></a>
+<a href=""><img src="https://img.shields.io/github/stars/YouthAIAgent/rekt-shield?style=for-the-badge&logo=github&logoColor=00ff88&label=STARS&labelColor=0a0a0f&color=00ff88" /></a>
+<a href=""><img src="https://img.shields.io/github/forks/YouthAIAgent/rekt-shield?style=for-the-badge&logo=git&logoColor=00d4ff&label=FORKS&labelColor=0a0a0f&color=00d4ff" /></a>
+<a href=""><img src="https://img.shields.io/github/issues/YouthAIAgent/rekt-shield?style=for-the-badge&logo=target&logoColor=ff3366&label=ISSUES&labelColor=0a0a0f&color=ff3366" /></a>
 <a href="#"><img src="https://img.shields.io/badge/LICENSE-MIT-a855f7?style=for-the-badge&logoColor=a855f7&labelColor=0a0a0f" /></a>
 <a href="#"><img src="https://komarev.com/ghpvc/?username=YouthAIAgent&label=VISITORS&color=00ff88&style=for-the-badge&labelColor=0a0a0f" /></a>
 

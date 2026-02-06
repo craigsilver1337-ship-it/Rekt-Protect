@@ -1,7 +1,7 @@
 'use client';
 
 import dynamic from 'next/dynamic';
-import { Shield, Cpu, Circle, Wallet, LogOut, Twitter, Github, Send, FileText } from 'lucide-react';
+import { Shield, Cpu, Circle, Wallet, LogOut, Twitter, Github, FileText } from 'lucide-react';
 import { useWallet } from '@solana/wallet-adapter-react';
 import { useSwarmStatus, useAIStatus } from '@/hooks';
 import { formatAddress } from '@/lib/formatters';
@@ -17,12 +17,6 @@ const SOCIAL_LINKS = [
     icon: Twitter,
     href: 'https://x.com/Web3__Youth',
     color: 'hover:text-[#1DA1F2]'
-  },
-  {
-    name: 'Telegram',
-    icon: Send,
-    href: 'https://t.me/ArgusWatch',
-    color: 'hover:text-[#0088cc]'
   },
   {
     name: 'GitHub',
@@ -80,6 +74,19 @@ export default function Header() {
               </span>
             </a>
           ))}
+        </div>
+
+        <div className="hidden lg:flex items-center gap-2 border-l border-cyber-border pl-6 ml-2 group cursor-pointer"
+          onClick={() => {
+            navigator.clipboard.writeText('L84NryNjZWNDmBDVy5bYNGwgyxxoFExZmo3Qnohderp');
+          }}
+        >
+          <div className="flex items-center gap-2 bg-black/20 border border-cyber-border rounded px-2 py-1 group-hover:border-cyber-green/50 transition-all">
+            <span className="text-[10px] font-bold text-cyber-green/50 leading-none">CA:</span>
+            <code className="text-[10px] text-cyber-text-dim font-mono group-hover:text-cyber-green transition-colors leading-none">
+              L84NryNjZWNDmBDVy5bYNGwgyxxoFExZmo3Qnohderp
+            </code>
+          </div>
         </div>
       </div>
 

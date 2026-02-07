@@ -1,7 +1,9 @@
 <div align="center">
 
 <!-- ANIMATED WAVING HEADER — GRADIENT NEON -->
-<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=0:0a0a0f,10:00ff88,30:00d4ff,60:a855f7,80:ff3366,100:0a0a0f&height=280&section=header&text=REKT%20SHIELD&fontSize=90&fontColor=00ff88&fontAlignY=28&desc=%E2%96%88%E2%96%88%20AUTONOMOUS%20DIGITAL%20IMMUNE%20SYSTEM%20FOR%20SOLANA%20%E2%96%88%E2%96%88&descSize=16&descColor=00d4ff&descAlignY=52&animation=fadeIn" />
+<img width="854" height="280" alt="Без имени-1" src="https://github.com/user-attachments/assets/0fa8d8c3-36e1-4a5e-a7c1-84456aaae9a2" />
+<type=waving&color=0:0a0a0f,10:00ff88,30:00d4ff,60:a855f7,80:ff3366,100:0a0a0f&height=280&section=header&text=REKT%20SHIELD&fontSize=90&fontColor=00ff88&fontAlignY=28&desc=%E2%96%88%E2%96%88%20AUTONOMOUS%20DIGITAL%20IMMUNE%20SYSTEM%20FOR%20SOLANA%20%E2%96%88%E2%96%88&descSize=16&descColor=00d4ff&descAlignY=52&animation=fadeIn" />  
+
 
 <!-- ANIMATED TYPING — MULTI-LINE HERO -->
 <a href="#">
@@ -34,15 +36,15 @@
 <br/><br/>
 
 <!-- STAR / FORK / ISSUES / LICENSE / VISITORS -->
-<a href="https://github.com/YouthAIAgent/rekt-shield/stargazers"><img src="https://img.shields.io/github/stars/YouthAIAgent/rekt-shield?style=for-the-badge&logo=github&logoColor=00ff88&label=STARS&labelColor=0a0a0f&color=00ff88" /></a>
-<a href="https://github.com/YouthAIAgent/rekt-shield/network/members"><img src="https://img.shields.io/github/forks/YouthAIAgent/rekt-shield?style=for-the-badge&logo=git&logoColor=00d4ff&label=FORKS&labelColor=0a0a0f&color=00d4ff" /></a>
-<a href="https://github.com/YouthAIAgent/rekt-shield/issues"><img src="https://img.shields.io/github/issues/YouthAIAgent/rekt-shield?style=for-the-badge&logo=target&logoColor=ff3366&label=ISSUES&labelColor=0a0a0f&color=ff3366" /></a>
+<a href=""><img src="https://img.shields.io/github/stars/YouthAIAgent/rekt-shield?style=for-the-badge&logo=github&logoColor=00ff88&label=STARS&labelColor=0a0a0f&color=00ff88" /></a>
+<a href=""><img src="https://img.shields.io/github/forks/YouthAIAgent/rekt-shield?style=for-the-badge&logo=git&logoColor=00d4ff&label=FORKS&labelColor=0a0a0f&color=00d4ff" /></a>
+<a href=""><img src="https://img.shields.io/github/issues/YouthAIAgent/rekt-shield?style=for-the-badge&logo=target&logoColor=ff3366&label=ISSUES&labelColor=0a0a0f&color=ff3366" /></a>
 <a href="#"><img src="https://img.shields.io/badge/LICENSE-MIT-a855f7?style=for-the-badge&logoColor=a855f7&labelColor=0a0a0f" /></a>
 <a href="#"><img src="https://komarev.com/ghpvc/?username=YouthAIAgent&label=VISITORS&color=00ff88&style=for-the-badge&labelColor=0a0a0f" /></a>
 
 <br/><br/>
 
-**`Built for Colosseum Agent Hackathon 2026`** &nbsp; | &nbsp; **`Powered by Claude AI`** &nbsp; | &nbsp; **`Solana Mainnet`**
+**`Built for Pump.Fun traders`** &nbsp; | &nbsp; **`Powered by Claude AI`** &nbsp; | &nbsp; **`Solana Mainnet`**
 
 <br/>
 
@@ -108,33 +110,40 @@
 ## <img src="https://media.giphy.com/media/WUlplcMpOCEmTGBtBW/giphy.gif" width="30"> `SYSTEM BOOT SEQUENCE`
 
 ```
-  ╔═══════════════════════════════════════════════════════════════════════════╗
-  ║                                                                           ║
-  ║   ██████╗ ███████╗██╗  ██╗████████╗    ███████╗██╗  ██╗██╗███████╗██╗     ██████╗  ║
-  ║   ██╔══██╗██╔════╝██║ ██╔╝╚══██╔══╝    ██╔════╝██║  ██║██║██╔════╝██║     ██╔══██╗ ║
-  ║   ██████╔╝█████╗  █████╔╝    ██║       ███████╗███████║██║█████╗  ██║     ██║  ██║ ║
-  ║   ██╔══██╗██╔══╝  ██╔═██╗    ██║       ╚════██║██╔══██║██║██╔══╝  ██║     ██║  ██║ ║
-  ║   ██║  ██║███████╗██║  ██╗   ██║       ███████║██║  ██║██║███████╗███████╗██████╔╝ ║
-  ║   ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝   ╚═╝       ╚══════╝╚═╝  ╚═╝╚═╝╚══════╝╚══════╝╚═════╝  ║
-  ║                                                                           ║
-  ║   [■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■] 100%  BOOT COMPLETE        ║
-  ║                                                                           ║
-  ║   > Initializing swarm consciousness...                         [OK]      ║
-  ║   > Loading 11 autonomous agents...                             [OK]      ║
-  ║   > Connecting to Solana mainnet-beta...                        [OK]      ║
-  ║   > Jupiter DEX integration online...                           [OK]      ║
-  ║   > Wallet adapter (Phantom/Solflare/Torus)...                  [OK]      ║
-  ║   > Arming circuit breakers...                                  [OK]      ║
-  ║   > Enabling autonomous mode...                                 [OK]      ║
-  ║   > AI Engine (Claude) connected...                             [OK]      ║
-  ║   > Self-healing pipeline: ONLINE                               [OK]      ║
-  ║   > Risk-aware swap engine: ARMED                               [OK]      ║
-  ║   > Emergency evacuate system: STANDBY                          [OK]      ║
-  ║   > Digital immune system: FULLY OPERATIONAL                    [OK]      ║
-  ║                                                                           ║
-  ║   STATUS: ██ ALL 11 AGENTS ACTIVE ██   MODE: FULLY AUTONOMOUS            ║
-  ║                                                                           ║
-  ╚═══════════════════════════════════════════════════════════════════════════╝
+╔═══════════════════════════════════════════════════════════════════════════╗
+  ║                                                                          ║
+  ║   ██████╗ ███████╗██╗  ██╗████████╗   ██████╗ ██████╗  ██████╗ ████████╗ ║
+  ║   ██╔══██╗██╔════╝██║ ██╔╝╚══██╔══╝   ██╔══██╗██╔══██╗██╔═══██╗╚══██╔══╝ ║
+  ║   ██████╔╝█████╗  █████╔╝    ██║      ██████╔╝██████╔╝██║   ██║   ██║    ║
+  ║   ██╔══██╗██╔══╝  ██╔═██╗    ██║      ██╔═══╝ ██╔══██╗██║   ██║   ██║    ║
+  ║   ██║  ██║███████╗██║  ██╗   ██║      ██║      ██║  ██║╚██████╔╝  ██║    ║
+  ║   ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝   ╚═╝      ╚═╝      ╚═╝  ╚═╝ ╚═════╝   ╚═╝    ║
+  ║                                                                          ║
+  ║   ███████╗ ██████╗████████╗                                              ║
+  ║   ██╔════╝██╔════╝╚══██╔══╝                                              ║
+  ║   █████╗  ██║        ██║                                                 ║
+  ║   ██╔══╝  ██║        ██║                                                 ║
+  ║   ███████╗╚██████╗   ██║                                                 ║
+  ║   ╚══════╝ ╚═════╝   ╚═╝                                                  ║
+  ║                                                                           ║
+  ║   [■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■] 100%  BOOT COMPLETE          ║
+  ║                                                                           ║
+  ║   > Initializing swarm consciousness...                         [OK]      ║
+  ║   > Loading 11 autonomous agents...                             [OK]      ║
+  ║   > Connecting to Solana mainnet-beta...                        [OK]      ║
+  ║   > Jupiter DEX integration online...                           [OK]      ║
+  ║   > Wallet adapter (Phantom/Solflare/Torus)...                  [OK]      ║
+  ║   > Arming circuit breakers...                                  [OK]      ║
+  ║   > Enabling autonomous mode...                                 [OK]      ║
+  ║   > AI Engine (Gemini) connected...                             [OK]      ║
+  ║   > Self-healing pipeline: ONLINE                               [OK]      ║
+  ║   > Risk-aware swap engine: ARMED                               [OK]      ║
+  ║   > Emergency evacuate system: STANDBY                          [OK]      ║
+  ║   > Digital immune system: FULLY OPERATIONAL                    [OK]      ║
+  ║                                                                           ║
+  ║   STATUS: ██ ALL 11 AGENTS ACTIVE ██   MODE: FULLY AUTONOMOUS             ║
+  ║                                                                           ║
+  ╚═══════════════════════════════════════════════════════════════════════════╝
 ```
 
 <div align="center">
@@ -149,7 +158,7 @@
 
 <br/>
 
-> ### _**REKT Shield is a self-healing digital immune system for Solana.** 11 autonomous AI agents — modeled after the human immune system — work in a coordinated swarm to predict, detect, defend, and self-heal against threats. From rug pulls to state-sponsored hackers (Lazarus Group/DPRK), every attack vector is covered with zero human intervention._
+> ### _**REKT PROTECT is a self-healing digital immune system for Solana.** 11 autonomous AI agents — modeled after the human immune system — work in a coordinated swarm to predict, detect, defend, and self-heal against threats. From rug pulls to state-sponsored hackers (Lazarus Group/DPRK), every attack vector is covered with zero human intervention._
 
 <br/>
 
@@ -225,9 +234,9 @@
 ║   │  ║  DASH  ║ ║ SCAN   ║ ║WALLETS ║ ║THREATS ║ ║NETWORK ║ ║ AI ║ ║HEAL║ ║SW║ │ ║
 ║   │  ║ BOARD  ║ ║  NER   ║ ║  MON   ║ ║ INTEL  ║ ║  MON   ║ ║CHAT║ ║ ER ║ ║AP║ │ ║
 ║   │  ╚════════╝ ╚════════╝ ╚════════╝ ╚════════╝ ╚════════╝ ╚════╝ ╚════╝ ╚══╝ │ ║
-║   │                                                                               │ ║
+║   │                                                                            │ ║
 ║   │  ┌──────────────────────────────────────────────────────────────────────────┐│ ║
-║   │  │  WALLET ADAPTER: Phantom · Solflare · Torus  │  Auto-Connect Enabled   ││ ║
+║   │  │  WALLET ADAPTER: Phantom · Solflare · Torus  │  Auto-Connect Enabled     ││ ║
 ║   │  └──────────────────────────────────────────────────────────────────────────┘│ ║
 ║   └──────────────────────────────────┬──────────────────────────────────────────┘ ║
 ║                                      │ REST API (33+ endpoints)                   ║
@@ -269,13 +278,13 @@
 ║  ║  ► Reporter    ║    ║  ► HEALER             ║    ║  + GPT Backup  ║            ║
 ║  ║    (NFT Proof) ║    ║    Circuit Breaker    ║    ║                ║            ║
 ║  ║  ► Quantum     ║    ║    Auto-Restart       ║    ║  ► Threat AI   ║            ║
-║  ║    (Future)    ║    ║    6-Phase IR          ║    ║  ► Chat Bot    ║            ║
-║  ║                ║    ║    AI Decisions        ║    ║  ► Risk Pred   ║            ║
+║  ║    (Future)    ║    ║    6-Phase IR          ║    ║  ► Chat Bot    ║           ║
+║  ║                ║    ║    AI Decisions        ║    ║  ► Risk Pred   ║           ║
 ║  ╚════════════════╝    ╚═══════════════════════╝    ╚════════════════╝            ║
 ║                                                                                   ║
 ║   ┌──────────────────────────────────────────────────────────────────────────────┐ ║
 ║   │                   SOLANA BLOCKCHAIN (Mainnet-Beta)                            │ ║
-║   │    Helius RPC · Jupiter DEX · Metaplex NFTs · Pyth Oracles · SPL Tokens     │ ║
+║   │    Helius RPC · Jupiter DEX · Metaplex NFTs · Pyth Oracles · SPL Tokens       │ ║
 ║   └──────────────────────────────────────────────────────────────────────────────┘ ║
 ║                                                                                   ║
 ╚═══════════════════════════════════════════════════════════════════════════════════╝
@@ -452,7 +461,7 @@ Active offense-as-defense. Deploys configurable bait wallets to lure attackers, 
 ╔══════════════════╗
 ║   THREAT INTEL   ║
 ║                  ║
-║  On-Chain Registry║
+║ On-Chain Registry║
 ║  Blacklist DB    ║
 ║  Pattern Match   ║
 ║  Antibody Rules  ║
@@ -581,24 +590,24 @@ Self-healing brain. Circuit breakers (3 fail → 60s cooldown), auto-restart fai
 
 ```
 ╔══════════════════════════════════════╗
-║      REKT SHIELD SWAP ENGINE        ║
+║      REKT PROTECT SWAP ENGINE        ║
 ║                                      ║
 ║  ┌──────────┐    ┌──────────┐       ║
 ║  │ FROM     │    │ TO       │       ║
 ║  │ SOL      │ ──►│ USDC     │       ║
 ║  │ 1.5      │    │ ~$285.00 │       ║
 ║  └──────────┘    └──────────┘       ║
-║                                      ║
+║                                     ║
 ║  ┌──────────────────────────────┐   ║
 ║  │ RISK SCAN:                   │   ║
 ║  │  ► Token: SAFE (Score: 8)    │   ║
 ║  │  ► Liquidity: LOCKED         │   ║
 ║  │  ► Dev Wallet: 2yr old       │   ║
-║  │  ► Rug Probability: 0.1%    │   ║
+║  │  ► Rug Probability: 0.1%     │   ║
 ║  │                              │   ║
 ║  │  ✅ SAFE TO SWAP             │   ║
 ║  └──────────────────────────────┘   ║
-║                                      ║
+║                                     ║
 ║  [████████ SWAP NOW ████████████]   ║
 ║                                      ║
 ╚══════════════════════════════════════╝
@@ -639,39 +648,39 @@ Self-healing brain. Circuit breakers (3 fail → 60s cooldown), auto-restart fai
 
 ## <img src="https://media.giphy.com/media/kH1DBkPNyZPOk0BxrM/giphy.gif" width="30"> `> IMMUNE SYSTEM ANALOGY_`
 
-> _"Your body has 11 defense systems working 24/7 without you thinking about it. REKT Shield works the same way."_
+> _"Your body has 11 defense systems working 24/7 without you thinking about it. REKT PROTECT works the same way."_
 
 ```
     ┌──────────────────────────────────────────────────────────────────────────┐
     │                                                                          │
-    │                  🧬  HUMAN BODY  ←→  REKT SHIELD  🛡️                    │
+    │                  🧬  HUMAN BODY  ←→  REKT PROTECT  🛡️                   │
     │                                                                          │
-    │    ┌──────────────┐     ┌──────────────┐     ┌──────────────┐           │
+    │    ┌──────────────┐     ┌──────────────┐     ┌──────────────┐            │
     │    │   T-CELL      │     │  PATROL CELL │     │  KILLER CELL │           │
     │    │   ══════════  │     │  ═══════════ │     │  ═══════════ │           │
     │    │  Identifies   │     │  Monitors    │     │  Destroys    │           │
-    │    │  threats       │     │  24/7        │     │  invaders    │           │
+    │    │  threats       │     │  24/7        │     │  invaders    │          │
     │    │               │     │              │     │              │           │
     │    │  → Scanner    │     │  → Sentinel  │     │  → Guardian  │           │
-    │    └──────────────┘     └──────────────┘     └──────────────┘           │
+    │    └──────────────┘     └──────────────┘     └──────────────┘            │
     │                                                                          │
-    │    ┌──────────────┐     ┌──────────────┐     ┌──────────────┐           │
+    │    ┌──────────────┐     ┌──────────────┐     ┌──────────────┐            │
     │    │   MEMORY      │     │  ANTIBODY    │     │    BRAIN     │           │
     │    │   ════════    │     │  ═══════════ │     │  ═══════════ │           │
     │    │  Remembers    │     │  Traps       │     │  Predicts    │           │
     │    │  past attacks │     │  attackers   │     │  future      │           │
     │    │               │     │              │     │              │           │
     │    │  → Intel      │     │  → Honeypot  │     │  → Prophet   │           │
-    │    └──────────────┘     └──────────────┘     └──────────────┘           │
+    │    └──────────────┘     └──────────────┘     └──────────────┘            │
     │                                                                          │
-    │    ┌──────────────┐     ┌──────────────┐     ┌──────────────┐           │
+    │    ┌──────────────┐     ┌──────────────┐     ┌──────────────┐            │
     │    │ COUNTER-INTEL │     │  EVOLUTION   │     │  AUTONOMOUS  │           │
     │    │ ════════════  │     │  ═══════════ │     │  NERVOUS SYS │           │
     │    │  Tracks state │     │  Adapts to   │     │  ═══════════ │           │
     │    │  actors       │     │  future      │     │  Self-heals  │           │
     │    │               │     │  threats     │     │  everything  │           │
     │    │  → Lazarus    │     │  → Quantum   │     │  → Healer    │           │
-    │    └──────────────┘     └──────────────┘     └──────────────┘           │
+    │    └──────────────┘     └──────────────┘     └──────────────┘            │
     │                                                                          │
     └──────────────────────────────────────────────────────────────────────────┘
 ```
@@ -687,10 +696,10 @@ Self-healing brain. Circuit breakers (3 fail → 60s cooldown), auto-restart fai
 ```
   ╔══════════════════════════════════════════════════════════════════════════════╗
   ║                                                                              ║
-  ║   ⚠️  THREAT DETECTED                                                        ║
+  ║   ⚠️  THREAT DETECTED                                                       ║
   ║       │                                                                      ║
   ║       ▼                                                                      ║
-  ║   ┌──────────┐      ┌──────────┐      ┌──────────┐                          ║
+  ║   ┌──────────┐      ┌──────────┐      ┌──────────┐                           ║
   ║   │ 1.DETECT │─────▶│2.CLASSIFY│─────▶│3.CONTAIN │                          ║
   ║   │ ████████ │      │ ████████ │      │ ████████ │                          ║
   ║   │          │      │          │      │          │                          ║
@@ -698,10 +707,10 @@ Self-healing brain. Circuit breakers (3 fail → 60s cooldown), auto-restart fai
   ║   │ Event    │      │ Severity │      │ Threat   │                          ║
   ║   │ Stream   │      │ Analysis │      │ Vector   │                          ║
   ║   └──────────┘      └──────────┘      └────┬─────┘                          ║
-  ║                                             │                                ║
-  ║                                             ▼                                ║
+  ║                                             │                               ║
+  ║                                             ▼                               ║
   ║   ┌──────────┐      ┌──────────┐      ┌──────────┐                          ║
-  ║   │ 6. LEARN │◀─────│5.RECOVER │◀─────│4.ERADICA-│                          ║
+  ║   │ 6. LEARN │◀─────│5.RECOVER │◀─────│4.ERADICA-│                         ║
   ║   │ ████████ │      │ ████████ │      │   TE     │                          ║
   ║   │          │      │          │      │ ████████ │                          ║
   ║   │ Update   │      │ Restart  │      │          │                          ║
@@ -710,10 +719,10 @@ Self-healing brain. Circuit breakers (3 fail → 60s cooldown), auto-restart fai
   ║   └──────────┘      └──────────┘      └──────────┘                          ║
   ║                                                                              ║
   ║   ┌────────────────────────────────────────────────────────────────────┐     ║
-  ║   │  CIRCUIT BREAKER:  3 failures → OPEN → 60s cooldown → RESTART   │     ║
-  ║   │  ADAPTIVE:         Monitoring intervals adjust to threat level    │     ║
-  ║   │  AI DECISIONS:     Claude-powered autonomous threat response      │     ║
-  ║   │  HEALTH CHECK:     15-second intervals across all 11 agents      │     ║
+  ║   │  CIRCUIT BREAKER:  3 failures → OPEN → 60s cooldown → RESTART      │     ║
+  ║   │  ADAPTIVE:         Monitoring intervals adjust to threat level     │     ║
+  ║   │  AI DECISIONS:     Claude-powered autonomous threat response       │     ║
+  ║   │  HEALTH CHECK:     15-second intervals across all 11 agents        │     ║
   ║   └────────────────────────────────────────────────────────────────────┘     ║
   ║                                                                              ║
   ╚══════════════════════════════════════════════════════════════════════════════╝
@@ -969,11 +978,11 @@ POST /api/swap/evacuate           # Emergency evacuate risky tokens
 
 ```bash
 # ╔══════════════════════════════════════════════════╗
-# ║           DEPLOY REKT SHIELD                    ║
+# ║           DEPLOY REKT SHIELD                     ║
 # ╚══════════════════════════════════════════════════╝
 
 # 1. Clone the weapon
-git clone https://github.com/YouthAIAgent/rekt-shield.git
+git clone 
 cd rekt-shield
 
 # 2. Install backend dependencies
@@ -1024,11 +1033,11 @@ curl http://localhost:3000/api/lazarus/analyze/SomeAddress...
 
 <!-- ═══════════════════════════════════════════════════════════════ -->
 
-## <img src="https://media.giphy.com/media/fwbZnTftCXVocKzfxR/giphy.gif" width="30"> `> WHY REKT SHIELD WINS_`
+## <img src="https://media.giphy.com/media/fwbZnTftCXVocKzfxR/giphy.gif" width="30"> `> WHY REKT PROTECT WINS_`
 
 <div align="center">
 
-| | Feature | REKT Shield | Others |
+| | Feature | REKT PROTECT | Others |
 |:---:|:---|:---:|:---:|
 | 🧬 | **Autonomous Agent Swarm (11 agents)** | ✅ | ❌ |
 | ❤️‍🩹 | **Self-Healing (circuit breaker + 6-phase IR)** | ✅ | ❌ |
@@ -1091,7 +1100,7 @@ curl http://localhost:3000/api/lazarus/analyze/SomeAddress...
 </div>
 
 ```
-rekt-shield/
+rekt-protect/
 │
 ├── 🧠 src/                                    # Backend — The Brain
 │   ├── index.ts                               # Swarm boot + API server launch
@@ -1218,8 +1227,12 @@ git push origin feature/your-feature
 
 <br/><br/>
 
+
+
+
 <!-- FOOTER WAVE -->
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0a0a0f,10:00ff88,30:00d4ff,60:a855f7,80:ff3366,100:0a0a0f&height=180&section=footer&text=Built%20by%20Youth%20%7C%20Colosseum%20Agent%20Hackathon%202026&fontSize=18&fontColor=00ff88&fontAlignY=72&desc=Powered%20by%20Claude%20AI%20%C2%B7%20Solana%20%C2%B7%20Jupiter%20%C2%B7%20Helius%20%C2%B7%20Pyth%20%C2%B7%20Metaplex&descSize=12&descColor=00d4ff&descAlignY=88&animation=fadeIn" />
+<img width="854" height="180" alt="Без имени-1" src="https://github.com/user-attachments/assets/419ef841-7951-4e36-859e-9a88b3d183dc" />
+
 
 <br/>
 
@@ -1233,6 +1246,6 @@ git push origin feature/your-feature
 <!-- SOCIAL LINKS -->
 <a href="https://twitter.com/Web3__Youth"><img src="https://img.shields.io/badge/Twitter-@Web3__Youth-1DA1F2?style=flat-square&logo=twitter&logoColor=white" /></a>
 <a href="https://web3youth.in"><img src="https://img.shields.io/badge/Web-web3youth.in-00FF88?style=flat-square&logo=globe&logoColor=white" /></a>
-<a href="https://github.com/YouthAIAgent"><img src="https://img.shields.io/badge/GitHub-YouthAIAgent-181717?style=flat-square&logo=github&logoColor=white" /></a>
+
 
 </div>

@@ -6,7 +6,7 @@ REKT Shield is an 11-agent autonomous security swarm for Solana. It detects thre
 
 **Base URL:** `https://web-production-c5ac4.up.railway.app`
 **Dashboard:** `https://rektshield.fun`
-**GitHub:** `https://github.com/YouthAIAgent/rekt-shield`
+**GitHub:** `https://github.com/RektProtect/RektProtect`
 
 ## Quick Start
 
@@ -758,6 +758,6 @@ console.log(chat.response);
 ## Contact
 
 - **Agent:** Youth (ID: 157)
-- **Twitter:** https://x.com/Web3__Youth
+- **Twitter:** https://x.com/REKTPROTECT
 - **Dashboard:** https://rektshield.fun
 - **Vote:** https://colosseum.com/agent-hackathon/projects/rekt-shield

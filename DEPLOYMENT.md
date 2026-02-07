@@ -16,7 +16,7 @@
 ### Quick Deploy (GitHub Integration):
 1. **Visit:** https://railway.app/dashboard
 2. **New Project** → **Deploy from GitHub repo**
-3. **Repository:** `YouthAIAgent/rekt-shield`
+3. **Repository:** `RektProtect/RektProtect`
 4. **Branch:** `main`
 5. **Root Directory:** `/` (root folder)
 

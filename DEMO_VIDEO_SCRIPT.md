@@ -91,7 +91,7 @@
 **[VISUAL: Text appears — "Don't get rekt. Get shielded." followed by GitHub link and demo URL]**
 
 **TEXT ON SCREEN:**
-- GitHub: github.com/YouthAIAgent/rekt-shield
+- GitHub: github.com/RektProtect/RektProtect
 - Live Demo: rekt-shield.vercel.app
 - Built for Colosseum Agent Hackathon 2026
 

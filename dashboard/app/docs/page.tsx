@@ -856,10 +856,10 @@ console.log(swarm.agents.filter(a => a.status === 'OK'));`}
           <div>
             <h4 className="text-xs font-bold uppercase tracking-widest text-cyber-text-dim mb-6">Connect</h4>
             <div className="flex flex-col gap-4">
-              <a href="https://github.com/YouthAIAgent/rekt-protect" target="_blank" rel="noopener" className="flex items-center gap-3 text-sm text-cyber-text-dim hover:text-cyber-green transition-colors">
+              <a href="https://github.com/RektProtect/RektProtect" target="_blank" rel="noopener" className="flex items-center gap-3 text-sm text-cyber-text-dim hover:text-cyber-green transition-colors">
                 <Github size={16} /> GitHub Repository
               </a>
-              <a href="https://x.com/Web3__Youth" target="_blank" rel="noopener" className="flex items-center gap-3 text-sm text-cyber-text-dim hover:text-cyber-blue transition-colors">
+              <a href="https://x.com/REKTPROTECT" target="_blank" rel="noopener" className="flex items-center gap-3 text-sm text-cyber-text-dim hover:text-cyber-blue transition-colors">
                 <Twitter size={16} /> Twitter / X
               </a>
             </div>

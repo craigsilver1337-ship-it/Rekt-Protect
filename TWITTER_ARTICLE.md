@@ -117,7 +117,7 @@ The goal was never to build another scanner. The goal is to build the security l
 
 Try It
 
-The dashboard is live at rektshield.fun. The code is fully open source at github.com/YouthAIAgent/rekt-shield. There is a demo walkthrough on our Twitter at x.com/Web3__Youth.
+The dashboard is live at rektshield.fun. The code is fully open source at github.com/RektProtect/RektProtect. There is a demo walkthrough on our Twitter at x.com/REKTPROTECT.
 
 We built this for the Colosseum Agent Hackathon. Eleven agents. Zero human intervention. A digital immune system for Solana that runs itself.
 

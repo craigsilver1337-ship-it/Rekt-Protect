@@ -15,13 +15,13 @@ const SOCIAL_LINKS = [
   {
     name: 'Twitter',
     icon: Twitter,
-    href: 'https://x.com/Web3__Youth',
+    href: 'https://x.com/REKTPROTECT',
     color: 'hover:text-[#1DA1F2]'
   },
   {
     name: 'GitHub',
     icon: Github,
-    href: 'https://github.com/YouthAIAgent/rekt-shield',
+    href: 'https://github.com/RektProtect/RektProtect',
     color: 'hover:text-white'
   },
   {

@@ -162,7 +162,7 @@ Show the actual terminal output:
 **[Screen: Show GitHub URL]**
 
 ```
-github.com/YouthAIAgent/rekt-shield
+github.com/RektProtect/RektProtect
 ```
 
 **[VOICE]:**

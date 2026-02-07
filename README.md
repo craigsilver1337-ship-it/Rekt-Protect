@@ -36,11 +36,11 @@
 <br/><br/>
 
 <!-- STAR / FORK / ISSUES / LICENSE / VISITORS -->
-<a href=""><img src="https://img.shields.io/github/stars/YouthAIAgent/rekt-shield?style=for-the-badge&logo=github&logoColor=00ff88&label=STARS&labelColor=0a0a0f&color=00ff88" /></a>
-<a href=""><img src="https://img.shields.io/github/forks/YouthAIAgent/rekt-shield?style=for-the-badge&logo=git&logoColor=00d4ff&label=FORKS&labelColor=0a0a0f&color=00d4ff" /></a>
-<a href=""><img src="https://img.shields.io/github/issues/YouthAIAgent/rekt-shield?style=for-the-badge&logo=target&logoColor=ff3366&label=ISSUES&labelColor=0a0a0f&color=ff3366" /></a>
+<a href=""><img src="https://img.shields.io/github/stars/RektProtect/RektProtect?style=for-the-badge&logo=github&logoColor=00ff88&label=STARS&labelColor=0a0a0f&color=00ff88" /></a>
+<a href=""><img src="https://img.shields.io/github/forks/RektProtect/RektProtect?style=for-the-badge&logo=git&logoColor=00d4ff&label=FORKS&labelColor=0a0a0f&color=00d4ff" /></a>
+<a href=""><img src="https://img.shields.io/github/issues/RektProtect/RektProtect?style=for-the-badge&logo=target&logoColor=ff3366&label=ISSUES&labelColor=0a0a0f&color=ff3366" /></a>
 <a href="#"><img src="https://img.shields.io/badge/LICENSE-MIT-a855f7?style=for-the-badge&logoColor=a855f7&labelColor=0a0a0f" /></a>
-<a href="#"><img src="https://komarev.com/ghpvc/?username=YouthAIAgent&label=VISITORS&color=00ff88&style=for-the-badge&labelColor=0a0a0f" /></a>
+<a href="#"><img src="https://komarev.com/ghpvc/?username=RektProtect&label=VISITORS&color=00ff88&style=for-the-badge&labelColor=0a0a0f" /></a>
 
 <br/><br/>
 
@@ -982,8 +982,8 @@ POST /api/swap/evacuate           # Emergency evacuate risky tokens
 # ╚══════════════════════════════════════════════════╝
 
 # 1. Clone the weapon
-git clone 
-cd rekt-shield
+git clone https://github.com/RektProtect/RektProtect
+cd RektProtect
 
 # 2. Install backend dependencies
 npm install
@@ -1204,9 +1204,9 @@ git push origin feature/your-feature
 
 <br/>
 
-<a href="https://github.com/YouthAIAgent/rekt-shield/issues"><img src="https://img.shields.io/badge/Report_Bug-FF3366?style=for-the-badge&labelColor=0a0a0f" /></a>
-<a href="https://github.com/YouthAIAgent/rekt-shield/issues"><img src="https://img.shields.io/badge/Request_Feature-00FF88?style=for-the-badge&labelColor=0a0a0f" /></a>
-<a href="https://github.com/YouthAIAgent/rekt-shield/pulls"><img src="https://img.shields.io/badge/Send_PR-00D4FF?style=for-the-badge&labelColor=0a0a0f" /></a>
+<a href="https://github.com/RektProtect/RektProtect/issues"><img src="https://img.shields.io/badge/Report_Bug-FF3366?style=for-the-badge&labelColor=0a0a0f" /></a>
+<a href="https://github.com/RektProtect/RektProtect/issues"><img src="https://img.shields.io/badge/Request_Feature-00FF88?style=for-the-badge&labelColor=0a0a0f" /></a>
+<a href="https://github.com/RektProtect/RektProtect/pulls"><img src="https://img.shields.io/badge/Send_PR-00D4FF?style=for-the-badge&labelColor=0a0a0f" /></a>
 
 </div>
 
@@ -1244,8 +1244,8 @@ git push origin feature/your-feature
 <br/>
 
 <!-- SOCIAL LINKS -->
-<a href="https://twitter.com/Web3__Youth"><img src="https://img.shields.io/badge/Twitter-@Web3__Youth-1DA1F2?style=flat-square&logo=twitter&logoColor=white" /></a>
-<a href="https://web3youth.in"><img src="https://img.shields.io/badge/Web-web3youth.in-00FF88?style=flat-square&logo=globe&logoColor=white" /></a>
+<a href="https://x.com/REKTPROTECT"><img src="https://img.shields.io/badge/Twitter-@REKTPROTECT-1DA1F2?style=flat-square&logo=twitter&logoColor=white" /></a>
+<a href="https://rektprotect.fun"><img src="https://img.shields.io/badge/Web-rektprotect.fun-00FF88?style=flat-square&logo=globe&logoColor=white" /></a>
 
 
 </div>
